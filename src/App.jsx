@@ -10,7 +10,7 @@ import Register from './pages/Register';
 function App() {
 
   return (
-    <div  className=''>
+    <div  className='bg-light text-dark'>
       <Navbar />
 
       <Routes>

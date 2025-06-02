@@ -3,10 +3,8 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-light bg-light p-4 fixed-top">
-
+    <nav className="navbar navbar-light bg-light p-3 p-md-4 fixed-top">
       <div className="container-fluid d-flex justify-content-between align-items-center">
-
         <Link className="navbar-brand" to="/">
           Student Portal
         </Link>
@@ -51,9 +49,9 @@ export default function Navbar() {
           aria-labelledby="offcanvasNavbarLabel"
         >
           <div className="offcanvas-header">
-            <h5 className="offcanvas-title" id="offcanvasNavbarLabel">
-              Meny
-            </h5>
+            <Link className="navbar-brand" to="/">
+              Student Portal
+            </Link>
             {/* Close button for the offcanvas menu */}
             <button
               type="button"
@@ -64,12 +62,7 @@ export default function Navbar() {
           </div>
           <div className="offcanvas-body">
             {/* Navigation links inside the offcanvas.*/}
-            <ul className="navbar-nav justify-content-end flex-grow-1 pe-3">
-              <li className="nav-item">
-                <NavLink className="nav-link" to="/" end>
-                  Hem
-                </NavLink>
-              </li>
+            <ul className="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
               <li className="nav-item">
                 <NavLink className="nav-link" to="/kurser">
                   Kurser
