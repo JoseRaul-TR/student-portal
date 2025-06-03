@@ -5,7 +5,7 @@ import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import News from "./pages/News";
-import Register from "./pages/Register";
+import Registration from "./pages/Registration";
 import CourseDetails from "./pages/CourseDetails";
 
 function App() {
@@ -18,7 +18,7 @@ function App() {
           <Route path="/courses" element={<Courses />} />
           <Route path="courses/:id" element={<CourseDetails/>} />
           <Route path="/news" element={<News />} />
-          <Route path="/registration" element={<Register />} />
+          <Route path="/registration" element={<Registration />} />
           {/* Route -> wrong URL */}
           <Route
             path="*"
