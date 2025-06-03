@@ -1,28 +1,37 @@
-import React from 'react';
-import './App.css';
-import { Routes, Route } from 'react-router-dom';
-import Navbar from './components/Navbar';
-import Home from './pages/Home';
-import Courses from './pages/Courses';
-import News from './pages/News';
-import Register from './pages/Register';
+import React from "react";
+import "./App.css";
+import { Routes, Route } from "react-router-dom";
+import Navbar from "./components/Navbar";
+import Home from "./pages/Home";
+import Courses from "./pages/Courses";
+import News from "./pages/News";
+import Register from "./pages/Register";
+import CourseDetails from "./pages/CourseDetails";
 
 function App() {
-
   return (
-    <div  className='bg-light text-dark'>
+    <div className="bg-light text-dark d-flex flex-column vh-100">
       <Navbar />
-
-      <Routes>
-        <Route path='/' element={<Home />} />
-        <Route path='/kurser' element={<Courses />} />
-        <Route path='/nyheter' element={<News />} />
-        <Route path='/registrering' element={<Register />} />
-        <Route path='*' element={<div className=''><h2>404 - Sidan kunde inte hittas</h2></div>} /> {/* Wrong URL route */}
-      </Routes>
-
+      <div className="container mt-4">
+        <Routes>
+          <Route path="/" element={<Home />} />
+          <Route path="/courses" element={<Courses />} />
+          <Route path="courses/:id" element={<CourseDetails/>} />
+          <Route path="/news" element={<News />} />
+          <Route path="/registration" element={<Register />} />
+          {/* Route -> wrong URL */}
+          <Route
+            path="*"
+            element={
+              <div className="">
+                <h2>404 - Sidan hittades inte</h2>
+              </div>
+            }
+          />
+        </Routes>
+      </div>
     </div>
-  )
+  );
 }
 
 export default App;

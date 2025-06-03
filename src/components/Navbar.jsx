@@ -3,7 +3,7 @@ import { Link, NavLink } from "react-router-dom";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-light bg-light p-3 p-md-4 fixed-top">
+    <nav className="navbar navbar-light bg-light p-3 p-md-4">
       <div className="container-fluid d-flex justify-content-between align-items-center">
         <Link className="navbar-brand" to="/">
           Student Portal
@@ -25,17 +25,17 @@ export default function Navbar() {
         {/* Horizontal Navigation for Desktop (visible from md breakpoint and up)*/}
         <ul className="navbar-nav flex-row d-none d-md-flex ms-auto">
           <li className="nav-item me-3">
-            <NavLink className="nav-link" to="/kurser">
+            <NavLink className="nav-link" to="/courses">
               Kurser
             </NavLink>
           </li>
           <li className="nav-item me-3">
-            <NavLink className="nav-link" to="/nyheter">
+            <NavLink className="nav-link" to="/news">
               Nyheter
             </NavLink>
           </li>
           <li className="nav-item">
-            <NavLink className="nav-link" to="/registrering">
+            <NavLink className="nav-link" to="/registration">
               Registrering
             </NavLink>
           </li>
@@ -64,17 +64,17 @@ export default function Navbar() {
             {/* Navigation links inside the offcanvas.*/}
             <ul className="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/kurser">
+                <NavLink className="nav-link" to="/courses">
                   Kurser
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/nyheter">
+                <NavLink className="nav-link" to="/news">
                   Nyheter
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/registrering">
+                <NavLink className="nav-link" to="/registration">
                   Registrering
                 </NavLink>
               </li>
