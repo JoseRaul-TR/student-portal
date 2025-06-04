@@ -1,4 +1,4 @@
-const courses = [
+const coursesData = [
   {
     id: '1',
     name: 'Trollformellära: Grunderna i Förtrollning',
@@ -88,7 +88,16 @@ const courses = [
     credits: 4,
     duration: '15 veckor',
     teacher: 'Madam Rolanda Hooch'
+  },
+  {
+    id: '11',
+    name: 'Alkemins Mysterier: De Vises Sten',
+    description: 'En fördjupning i alkemiska principer och sökandet efter de vises sten.',
+    longDescription: 'Denna avancerade kurs är endast öppen för de mest begåvade studenterna. Den utforskar de komplexa teorierna och praktiska experimenten inom alkemi, med särskilt fokus på transmutationsprocessen och legenden om de vises sten. Etisk övervägande och djupgående forskning är centrala delar av kursen.',
+    credits: 15,
+    duration: '35 veckor',
+    teacher: 'Albus Dumbledore'
   }
 ];
 
-export default courses;
+export default coursesData;

@@ -5,7 +5,7 @@ import coursesData from "../data/courses"; // Import course data
 export default function CourseDetails() {
     const { id } = useParams();
     // Ensure ID is treated as a string for comparison if your IDs are strings in data
-    const course = coursesData.find((c) => c.id === id);
+    const course = coursesData.find((course) => course.id === id);
 
     if (!course) {
         return (
