@@ -1,11 +1,18 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
+import Howartscrest from "../assets/Hogwartscrest.webp";
 
 export default function Navbar() {
   return (
     <nav className="navbar navbar-light bg-light p-3 p-md-4">
       <div className="container-fluid d-flex justify-content-between align-items-center">
-        <Link className="navbar-brand" to="/">
+        <Link className="navbar-brand d-flex flex-direction-column align-items-center" to="/">
+          <img
+            src={Howartscrest}
+            alt="Howarts Crest"
+            style={{ height: '50px', marginRight: '15px' }}
+            className="d-inline-bloxk align-text-top"
+          />
           Student Portal
         </Link>
 
