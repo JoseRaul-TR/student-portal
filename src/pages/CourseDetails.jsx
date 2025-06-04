@@ -1,43 +1,31 @@
 import React from "react";
-import { useParams } from "react-router-dom";
-
-const coursesData = [
-  {
-    id: 1,
-    name: "Introduktion till Programmering",
-    description: "En grundläggande kurs i programmering.",
-    details:
-      "Denna kurs ger en introduktion till grundläggande programmeringskoncept såsom variabler, loopar och funktioner. Inga förkunskaper krävs.",
-  },
-  {
-    id: 2,
-    name: "Avancerad JavaScript",
-    description: "Fördjupa dina kunskaper i JavaScript.",
-    details:
-      "Denna kurs fokuserar på avancerade JavaScript-koncept som asynkron programmering, closures, prototyper och ES6+ funktioner.",
-  },
-  {
-    id: 3,
-    name: "Webbutveckling med React",
-    description: "Lär dig bygga moderna webbapplikationer med React.",
-    details:
-      "I denna kurs lär du dig att bygga dynamiska och interaktiva användargränssnitt med React. Vi går igenom komponenter, state, props och routing.",
-  },
-];
+import { useParams, Link } from "react-router-dom";
+import coursesData from "../data/courses"; // Import course data
 
 export default function CourseDetails() {
     const { id } = useParams();
-    const course = coursesData.find((c) => c.id === parseInt(id));
+    // Ensure ID is treated as a string for comparison if your IDs are strings in data
+    const course = coursesData.find((c) => c.id === id);
 
     if (!course) {
-        return <div>Kursen hittades inte.</div>
+        return (
+            <div className="alert alert-warning" role="alert">
+                Kursen hittades inte. <Link to="/courses">Gå tillbaka till kurser</Link>
+            </div>
+        );
     }
 
     return (
-        <div>
-            <h2>{course.name}</h2>
-            <p>{course.description}</p>
-            {course.details && <p>Detaljer: {course.details}</p>}
+        <div className="card shadow-sm p-4">
+            <h1 className="card-title mb-3">{course.name}</h1>
+            <h5 className="card-subtitle mb-2 text-muted">{course.description}</h5>
+            <p className="card-text mt-3">{course.longDescription}</p> {/* Display long description */}
+            <ul className="list-group list-group-flush mb-3">
+                <li className="list-group-item"><strong>Högskolepoäng:</strong> {course.credits}</li>
+                <li className="list-group-item"><strong>Längd:</strong> {course.duration}</li>
+                <li className="list-group-item"><strong>Lärare:</strong> {course.teacher}</li>
+            </ul>
+            <Link to="/courses" className="btn btn-primary mt-3">Tillbaka till kurser</Link>
         </div>
     );
 }

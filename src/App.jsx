@@ -1,6 +1,6 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route } from "react-router-dom";
+import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
@@ -10,9 +10,9 @@ import CourseDetails from "./pages/CourseDetails";
 
 function App() {
   return (
-    <div className="bg-light text-dark d-flex flex-column vh-100">
+    <>
       <Navbar />
-      <div className="container mt-4">
+      <div className="container mt-4 mb-4 flex-grow-1">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
@@ -23,14 +23,16 @@ function App() {
           <Route
             path="*"
             element={
-              <div className="">
-                <h2>404 - Sidan hittades inte</h2>
+              <div className="text-center py-5">
+                <h2 className="display-4">404 - Sidan hittades inte</h2>
+                <p className="lead">Vi kunde inte hitta sidan du letade efter.</p>
+                <Link to="/" className="btn btn-primary mt-3">Gå till startsidan</Link>
               </div>
             }
           />
         </Routes>
       </div>
-    </div>
+    </>
   );
 }
 
