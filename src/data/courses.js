@@ -1,3 +1,16 @@
+// Import teacher profile images
+import filiusFlitwickImg from '../assets/proffesors_img/filius_flitwick.jpeg';
+import minervaMcGonagallImg from '../assets/proffesors_img/minerva_mcgonagall.jpeg';
+import alastorMoodyImg from '../assets/proffesors_img/alastor_moody.jpg';
+import pomonaSproutImg from '../assets/proffesors_img/pomona_sprout.jpg';
+import severusSnapeImg from '../assets/proffesors_img/severus_snape.jpg';
+import auroraSinistraImg from '../assets/proffesors_img/aurora_sinistra.jpg';
+import cuthbertBinnsImg from '../assets/proffesors_img/cuthbert_binns.jpeg';
+import rubeusHagridImg from '../assets/proffesors_img/rubeus_hagrid.jpg';
+import sybillTrelawneyImg from '../assets/proffesors_img/sybill_trelawney.jpg';
+import rolandaHoochImg from '../assets/proffesors_img/rolanda_hooch.jpg';
+import albusDumbledoreImg from '../assets/proffesors_img/albus_dumbledore.jpg';
+
 const coursesData = [
   {
     id: '1',
@@ -7,7 +20,7 @@ const coursesData = [
     credits: 8,
     duration: '30 veckor',
     teacher: 'Professor Filius Flitwick',
-    teacher_img: '../assets/proffesors_img/filius_flitwick.webp'
+    teacher_img: filiusFlitwickImg
   },
   {
     id: '2',
@@ -17,7 +30,7 @@ const coursesData = [
     credits: 12,
     duration: '30 veckor',
     teacher: 'Professor Minerva McGonagall',
-    teacher_img: '../assets/proffesors_img/minerva_mcgonagall.webp'
+    teacher_img: minervaMcGonagallImg
   },
   {
     id: '3',
@@ -27,7 +40,7 @@ const coursesData = [
     credits: 10,
     duration: '30 veckor',
     teacher: 'Professor Alastor "Galet Öga" Moody',
-    teacher_img: '../assets/proffesors_img/alastor_moody.webp'
+    teacher_img: alastorMoodyImg
   },
   {
     id: '4',
@@ -37,7 +50,7 @@ const coursesData = [
     credits: 7.5,
     duration: '25 veckor',
     teacher: 'Professor Pomona Sprout',
-    teacher_img: '../assets/proffesors_img/pomona_sprout.webp'
+    teacher_img: pomonaSproutImg
   },
   {
     id: '5',
@@ -47,7 +60,7 @@ const coursesData = [
     credits: 11,
     duration: '28 veckor',
     teacher: 'Professor Severus Snape',
-    teacher_img: '../assets/proffesors_img/severus_snape.webp'
+    teacher_img: severusSnapeImg
   },
   {
     id: '6',
@@ -57,7 +70,7 @@ const coursesData = [
     credits: 6,
     duration: '20 veckor',
     teacher: 'Professor Aurora Sinistra',
-    teacher_img: '../assets/proffesors_img/aurora_sinistra.webp'
+    teacher_img: auroraSinistraImg
   },
   {
     id: '7',
@@ -67,7 +80,7 @@ const coursesData = [
     credits: 5,
     duration: '22 veckor',
     teacher: 'Professor Cuthbert Binns (Spöke)',
-    teacher_img: '../assets/proffesors_img/cuthbert_binns.webp'
+    teacher_img: cuthbertBinnsImg
   },
   {
     id: '8',
@@ -77,7 +90,7 @@ const coursesData = [
     credits: 9.5,
     duration: '26 veckor',
     teacher: 'Professor Rubeus Hagrid',
-    teacher_img: '../assets/proffesors_img/rubeus_hagrid.webp'
+    teacher_img: rubeusHagridImg
   },
   {
     id: '9',
@@ -87,7 +100,7 @@ const coursesData = [
     credits: 7,
     duration: '18 veckor',
     teacher: 'Professor Sybill Trelawney',
-    teacher_img: '../assets/proffesors_img/sybill_trelawney.webp'
+    teacher_img: sybillTrelawneyImg
   },
   {
     id: '10',
@@ -97,7 +110,7 @@ const coursesData = [
     credits: 4,
     duration: '15 veckor',
     teacher: 'Madam Rolanda Hooch',
-    teacher_img: '../assets/proffesors_img/rolanda_hooch.webp'
+    teacher_img: rolandaHoochImg
   },
   {
     id: '11',
@@ -107,7 +120,7 @@ const coursesData = [
     credits: 15,
     duration: '35 veckor',
     teacher: 'Albus Dumbledore',
-    teacher_img: '../assets/proffesors_img/albus_dumbledore.webp'
+    teacher_img: albusDumbledoreImg
   }
 ];
 
