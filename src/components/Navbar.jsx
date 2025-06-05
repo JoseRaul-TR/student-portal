@@ -13,7 +13,7 @@ export default function Navbar() {
             style={{ height: '50px', marginRight: '15px' }}
             className="d-inline-bloxk align-text-top"
           />
-          Student Portal
+          Studentportalen
         </Link>
 
         {/* Navbar Toggler Button for Mobile (visible below md breakpoint)*/}
@@ -37,8 +37,8 @@ export default function Navbar() {
             </NavLink>
           </li>
           <li className="nav-item me-3">
-            <NavLink className="nav-link" to="/news">
-              Nyheter
+            <NavLink className="nav-link" to="/studentblogg">
+              Studentblogg
             </NavLink>
           </li>
           <li className="nav-item">
@@ -57,7 +57,7 @@ export default function Navbar() {
         >
           <div className="offcanvas-header">
             <Link className="navbar-brand" to="/">
-              Student Portal
+              Studentportalen
             </Link>
             {/* Close button for the offcanvas menu */}
             <button
@@ -76,8 +76,8 @@ export default function Navbar() {
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/news">
-                  Nyheter
+                <NavLink className="nav-link" to="/studentblogg">
+                  Studentblogg
                 </NavLink>
               </li>
               <li className="nav-item">

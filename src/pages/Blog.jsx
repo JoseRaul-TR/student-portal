@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
-import fetchNews from "../data/news"; // Import news data
-import NewsPost from "../components/NewsPost"; // Import NewsPost component
+import fetchPosts from "../data/posts"; // Import news data
+import BlogPost from "../components/BlogPost"; // Import NewsPost component
 
 export default function News() {
   const [news, setNews] = useState([]);
@@ -10,10 +10,10 @@ export default function News() {
   useEffect(() => {
     const getNews = async () => {
       try {
-        const fetchedData = await fetchNews();
+        const fetchedData = await fetchPosts();
         setNews(fetchedData);
-      } catch (err) {
-        setError("Kunde inte hämta nyheter. Vänligen försök igen senare.");
+      } catch (error) {
+        setError("Kunde inte hämta nyheter. Vänligen försök igen senare. Error: ", error);
       } finally {
         setLoading(false);
       }
@@ -28,7 +28,7 @@ export default function News() {
         <div className="spinner-border text-primary" role="status">
           <span className="visually-hidden">Laddar...</span>
         </div>
-        <p className="mt-2">Laddar nyheter...</p>
+        <p className="mt-2">Laddar blogginlägg...</p>
       </div>
     );
   }
@@ -42,17 +42,17 @@ export default function News() {
 
   return (
     <>
-      <h1 className="mb-4">Senaste Nyheterna</h1>
+      <h1 className="mb-4">Studentblogg</h1>
       <div className="row row-cols-1 g-4">
         {news.length > 0 ? (
           news.map((post) => (
             <div className="col" key={post.id}>
-              <NewsPost post={post} />
+              <BlogPost post={post} />
             </div>
           ))
         ) : (
           <div className="alert alert-info text-center" role="alert">
-            Inga nyheter hittades.
+            Inga bloggpost hittades.
           </div>
         )}
       </div>

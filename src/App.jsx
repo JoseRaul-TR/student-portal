@@ -4,7 +4,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import Navbar from "./components/Navbar";
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
-import News from "./pages/News";
+import Blog from "./pages/Blog";
 import Registration from "./pages/Registration";
 import CourseDetails from "./pages/CourseDetails";
 
@@ -17,7 +17,7 @@ function App() {
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
           <Route path="courses/:id" element={<CourseDetails/>} />
-          <Route path="/news" element={<News />} />
+          <Route path="/studentblogg" element={<Blog />} />
           <Route path="/registration" element={<Registration />} />
           {/* Route -> wrong URL */}
           <Route

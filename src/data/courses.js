@@ -6,7 +6,8 @@ const coursesData = [
     longDescription: 'Denna kurs täcker de mest fundamentala trollformlerna, inklusive levitationsförtrollningar och ljusformler. Fokus ligger på stavrörelse, korrekt uttal och mental koncentration för att uppnå önskat resultat. Perfekt för förstaårsstudenter som vill bemästra magins grunder.',
     credits: 8,
     duration: '30 veckor',
-    teacher: 'Professor Filius Flitwick'
+    teacher: 'Professor Filius Flitwick',
+    teacher_img: '../assets/proffesors_img/filius_flitwick.webp'
   },
   {
     id: '2',
@@ -15,7 +16,8 @@ const coursesData = [
     longDescription: 'I denna kurs utforskas principerna för förvandling, från enkla objektförvandlingar till mer komplexa transfigurationer. Studenterna kommer att öva på att förvandla icke-levande ting och förstå de etiska implikationerna av denna kraftfulla magi.',
     credits: 12,
     duration: '30 veckor',
-    teacher: 'Professor Minerva McGonagall'
+    teacher: 'Professor Minerva McGonagall',
+    teacher_img: '../assets/proffesors_img/minerva_mcgonagall.webp'
   },
   {
     id: '3',
@@ -24,7 +26,8 @@ const coursesData = [
     longDescription: 'Denna kurs är avgörande för varje ung häxa och trollkarl. Den fokuserar på defensiva trollformler, motförbannelser och strategier för att hantera hot från mörka varelser. Praktiska dueller och simuleringar ingår för att bygga upp studenternas självförtroende och förmåga att skydda sig själva och andra.',
     credits: 10,
     duration: '30 veckor',
-    teacher: 'Professor Alastor "Galet Öga" Moody'
+    teacher: 'Professor Alastor "Galet Öga" Moody',
+    teacher_img: '../assets/proffesors_img/alastor_moody.webp'
   },
   {
     id: '4',
@@ -33,7 +36,8 @@ const coursesData = [
     longDescription: 'Studenterna kommer att lära sig att identifiera, odla och vårda en mängd olika magiska växter, från skrikande Mandragor till livgivande Mimbulus Mimbletonia. Kursen innefattar praktiskt arbete i växthusen och undervisar om växternas användning i trolldrycker och medicin.',
     credits: 7.5,
     duration: '25 veckor',
-    teacher: 'Professor Pomona Sprout'
+    teacher: 'Professor Pomona Sprout',
+    teacher_img: '../assets/proffesors_img/pomona_sprout.webp'
   },
   {
     id: '5',
@@ -42,7 +46,8 @@ const coursesData = [
     longDescription: 'Denna kurs kräver noggrannhet och tålamod. Studenterna kommer att studera de exakta proportionerna av ingredienser, rätt tillagningstemperaturer och de subtila effekterna av olika brygder. Från enkla sömnmedel till komplexa Polyjuice-drycker, kommer studenterna att utforska trolldryckskonstens djup.',
     credits: 11,
     duration: '28 veckor',
-    teacher: 'Professor Severus Snape'
+    teacher: 'Professor Severus Snape',
+    teacher_img: '../assets/proffesors_img/severus_snape.webp'
   },
   {
     id: '6',
@@ -51,7 +56,8 @@ const coursesData = [
     longDescription: 'Lektionerna hålls i Astronomitornet under nattens mörker. Studenterna kommer att lära sig om himlakropparnas rörelser, stjärnbildernas betydelse och hur astrologiska händelser kan påverka magiska fenomen och trolldrycker.',
     credits: 6,
     duration: '20 veckor',
-    teacher: 'Professor Aurora Sinistra'
+    teacher: 'Professor Aurora Sinistra',
+    teacher_img: '../assets/proffesors_img/aurora_sinistra.webp'
   },
   {
     id: '7',
@@ -60,7 +66,8 @@ const coursesData = [
     longDescription: 'Denna kurs utforskar de stora magiska upptäckterna, de viktigaste trollkarlskrigen, de mest inflytelserika häxorna och trollkarlarna, samt utvecklingen av magiska lagar och samhällen. Studenterna kommer att lära sig av det förflutna för att förstå nuet.',
     credits: 5,
     duration: '22 veckor',
-    teacher: 'Professor Cuthbert Binns (Spöke)'
+    teacher: 'Professor Cuthbert Binns (Spöke)',
+    teacher_img: '../assets/proffesors_img/cuthbert_binns.webp'
   },
   {
     id: '8',
@@ -69,7 +76,8 @@ const coursesData = [
     longDescription: 'Denna praktiska kurs äger rum utanför slottet, i den Förbjudna Skogen och dess omgivningar. Studenterna kommer att interagera med och lära sig om varelser som hippogriffer, thestraler och nifflare, och förstå vikten av att respektera och skydda den magiska faunan.',
     credits: 9.5,
     duration: '26 veckor',
-    teacher: 'Professor Rubeus Hagrid'
+    teacher: 'Professor Rubeus Hagrid',
+    teacher_img: '../assets/proffesors_img/rubeus_hagrid.webp'
   },
   {
     id: '9',
@@ -78,7 +86,8 @@ const coursesData = [
     longDescription: 'Denna kurs äger rum i det dimmiga och rökfyllda norra tornet. Studenterna introduceras till de mystiska konsterna att tyda tecken och symboler för att få insikt i framtiden. Kursen uppmuntrar intuition och öppenhet för det okända.',
     credits: 7,
     duration: '18 veckor',
-    teacher: 'Professor Sybill Trelawney'
+    teacher: 'Professor Sybill Trelawney',
+    teacher_img: '../assets/proffesors_img/sybill_trelawney.webp'
   },
   {
     id: '10',
@@ -87,7 +96,8 @@ const coursesData = [
     longDescription: 'Förstaårsstudenter kommer att lära sig de grundläggande principerna för kvastflygning, inklusive att lyfta, sväva och landa säkert. Kursen är en introduktion till den spännande världen av flygmagi och är en förutsättning för Quidditch.',
     credits: 4,
     duration: '15 veckor',
-    teacher: 'Madam Rolanda Hooch'
+    teacher: 'Madam Rolanda Hooch',
+    teacher_img: '../assets/proffesors_img/rolanda_hooch.webp'
   },
   {
     id: '11',
@@ -96,7 +106,8 @@ const coursesData = [
     longDescription: 'Denna avancerade kurs är endast öppen för de mest begåvade studenterna. Den utforskar de komplexa teorierna och praktiska experimenten inom alkemi, med särskilt fokus på transmutationsprocessen och legenden om de vises sten. Etisk övervägande och djupgående forskning är centrala delar av kursen.',
     credits: 15,
     duration: '35 veckor',
-    teacher: 'Albus Dumbledore'
+    teacher: 'Albus Dumbledore',
+    teacher_img: '../assets/proffesors_img/albus_dumbledore.webp'
   }
 ];
 

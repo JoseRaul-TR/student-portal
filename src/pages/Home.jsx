@@ -21,8 +21,8 @@ export default function Home() {
         <Link to="/courses" className="btn btn-primary btn-lg m-2">
           Utforska Kurser
         </Link>
-        <Link to="/news" className="btn btn-secondary btn-lg m-2">
-          Läs Nyheter
+        <Link to="/studentblogg" className="btn btn-secondary btn-lg m-2">
+          Studentblogg
         </Link>
         <Link to="/registration" className="btn btn-success btn-lg m-2">
           Registrera dig till en kurs
