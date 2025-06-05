@@ -12,7 +12,7 @@ export default function Home() {
         className="img-fluid"
       />
       <h1 className="display-4 mb-4">
-        Välkommen till Howarts studentportalen!
+        Välkommen till Hogwarts skola för häxkonst och trolldom Studentportalen!
       </h1>
       <p className="lead mb-5">
         Din centrala plats för kursinformtion, nyheter och registrering.

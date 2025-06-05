@@ -1,52 +1,79 @@
 import React from "react";
 import { Link, NavLink } from "react-router-dom";
-import Howartscrest from "../assets/Hogwartscrest.webp";
+import Hogwartscrest from "../assets/Hogwartscrest.webp";
 
 export default function Navbar() {
+
   return (
-    <nav className="navbar navbar-light bg-light p-3 p-md-4">
-      <div className="container-fluid d-flex justify-content-between align-items-center">
-        <Link className="navbar-brand d-flex flex-direction-column align-items-center" to="/">
-          <img
-            src={Howartscrest}
-            alt="Howarts Crest"
-            style={{ height: '50px', marginRight: '15px' }}
-            className="d-inline-bloxk align-text-top"
-          />
-          Studentportalen
-        </Link>
+    <nav className="navbar navbar-light bg-light p-2 py-md-3 px-md-4 container-fluid d-flex align-items-center">
+        {/* Layout for small screens (< md) */}
+        <div className="d-flex d-md-none justify-content-between w-100 align-items-center">
+          <Link
+            className="navbar-brand d-flex flex-row justify-content-between align-items-center"
+            to="/"
+          >
+            <img
+              src={Hogwartscrest}
+              alt="Hogwarts vapensköld"
+              style={{ height: "50px" }}
+              className="d-inline-block me-1"
+            />
+            Studentportalen
+          </Link>
 
-        {/* Navbar Toggler Button for Mobile (visible below md breakpoint)*/}
-        <button
-          className="navbar-toggler d-md-none"
-          type="button"
-          data-bs-toggle="offcanvas" // Tells Bootstrap to trigger an offcanvas
-          data-bs-target="#offcanvasNavbar" // Points to the ID of the offcanvas element
-          aria-controls="offcanvasNavbar"
-          aria-expanded="false"
-          aria-label="Toggle navigation"
-        >
-          <span className="navbar-toggler-icon"></span>
-        </button>
+          {/* Navbar Toggler Button for Mobile (visible below md breakpoint)*/}
+          <button
+            className="navbar-toggler"
+            type="button"
+            data-bs-toggle="offcanvas"
+            data-bs-target="#offcanvasNavbar"
+            aria-controls="offcanvasNavbar"
+            aria-expanded="false"
+            aria-label="Toggle navigation"
+          >
+            <span className="navbar-toggler-icon"></span>
+          </button>
+        </div>
 
-        {/* Horizontal Navigation for Desktop (visible from md breakpoint and up)*/}
-        <ul className="navbar-nav flex-row d-none d-md-flex ms-auto">
-          <li className="nav-item me-3">
-            <NavLink className="nav-link" to="/courses">
-              Kurser
-            </NavLink>
-          </li>
-          <li className="nav-item me-3">
-            <NavLink className="nav-link" to="/studentblogg">
-              Studentblogg
-            </NavLink>
-          </li>
-          <li className="nav-item">
-            <NavLink className="nav-link" to="/registration">
-              Registrering
-            </NavLink>
-          </li>
-        </ul>
+        {/* Layout for wider screens (> md)*/}
+        <div className="d-none d-md-flex w-100 align-items-center">
+          <div className="d-flex align-items-center">
+          <Link className="navbar-brand m-0 fs-5" to="/">
+            Studentportalen
+          </Link>
+          </div>
+
+
+          {/* Image in the center of the navbar */}
+          <div className="d-flex justify-content-center mx-auto">
+            <Link className="navbar-brand m-0" to="/">
+              <img
+                src={Hogwartscrest}
+                alt="Hogwarts vapensköld"
+                style={{ height: "100px" }}
+                className="d-inline-block"
+              />
+            </Link>
+          </div>
+
+          <ul className="navbar-nav flex-row">
+            <li className="nav-item me-3 fs-5">
+              <NavLink className="nav-link" to="/courses">
+                Kurser
+              </NavLink>
+            </li>
+            <li className="nav-item me-3 fs-5">
+              <NavLink className="nav-link" to="/studentblogg">
+                Studentblogg
+              </NavLink>
+            </li>
+            <li className="nav-item fs-5">
+              <NavLink className="nav-link" to="/registration">
+                Registrering
+              </NavLink>
+            </li>
+          </ul>
+        </div>
 
         {/* Offcanvas Menu for Mobile (visible below md breakpoint)*/}
         <div
@@ -56,9 +83,20 @@ export default function Navbar() {
           aria-labelledby="offcanvasNavbarLabel"
         >
           <div className="offcanvas-header">
-            <Link className="navbar-brand" to="/">
-              Studentportalen
-            </Link>
+            <div className="flex-grow-1 d-flex justify-content-center align-items-center">
+              <Link
+                className="navbar-brand d-flex flex-column align-items-center m-0"
+                to="/"
+              >
+                <img
+                  src={Hogwartscrest}
+                  alt="Hogwarts vapensköld"
+                  style={{ height: "50px" }}
+                  className="d-inline-block mb-1"
+                />
+                Studentportalen
+              </Link>
+            </div>
             {/* Close button for the offcanvas menu */}
             <button
               type="button"
@@ -71,24 +109,32 @@ export default function Navbar() {
             {/* Navigation links inside the offcanvas.*/}
             <ul className="navbar-nav justify-content-center align-items-center flex-grow-1 pe-3">
               <li className="nav-item">
-                <NavLink className="nav-link" to="/courses">
+                <NavLink
+                  className="nav-link"
+                  to="/courses"
+                >
                   Kurser
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/studentblogg">
+                <NavLink
+                  className="nav-link"
+                  to="/studentblogg"
+                >
                   Studentblogg
                 </NavLink>
               </li>
               <li className="nav-item">
-                <NavLink className="nav-link" to="/registration">
+                <NavLink
+                  className="nav-link"
+                  to="/registration"
+                >
                   Registrering
                 </NavLink>
               </li>
             </ul>
           </div>
         </div>
-      </div>
     </nav>
   );
 }
