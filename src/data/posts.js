@@ -145,6 +145,4 @@ const fetchPosts = async () => {
   }
 };
 
-// Export the fetchPosts function as the default export of this module,
-// making it available for other parts of the application to import and use.
 export default fetchPosts;
