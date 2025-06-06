@@ -11,7 +11,7 @@ import sybillTrelawneyImg from '../assets/proffesors_img/sybill_trelawney.jpg';
 import rolandaHoochImg from '../assets/proffesors_img/rolanda_hooch.jpg';
 import albusDumbledoreImg from '../assets/proffesors_img/albus_dumbledore.jpg';
 
-const coursesData = [
+const courses = [
   {
     id: '1',
     name: 'Trollformellära: Grunderna i Förtrollning',
@@ -124,4 +124,4 @@ const coursesData = [
   }
 ];
 
-export default coursesData;
+export default courses;
