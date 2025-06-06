@@ -118,6 +118,12 @@ body {
   box-shadow: 0 8px 16px rgba(0,0,0,0.08);
 }
 
+.home-crest {
+  max-width: 150px;
+  height: auto;
+  margin-bottom: 30px;
+}
+
 .home-section .display-4 {
   color: #007bff;
   font-weight: 700;
@@ -129,4 +135,16 @@ body {
 
 .quick-menu-buttons .btn {
   min-width: 200px;
+}
+
+.teacher-img-detail {
+  width: 200px;
+  height: auto;
+  object-fit: cover;
+}
+
+.blog-author-img {
+  width: 50px;
+  height: 50px;
+  object-fit: cover;
 }

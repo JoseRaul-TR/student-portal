@@ -11,16 +11,16 @@ import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
 import FormHelperText from "@mui/material/FormHelperText";
-
 import Dialog from "@mui/material/Dialog";
 import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
+import DialogActions from "@mui/material/DialogActions";
 import List from "@mui/material/List";
 import ListItem from "@mui/material/ListItem";
 import ListItemText from "@mui/material/ListItemText";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
+import CloseIcon from "@mui/icons-material/Close";
 import BackpackIcon from "@mui/icons-material/Backpack";
 
 import courses from "../data/courses";
@@ -40,50 +40,62 @@ export default function RegistrationForm() {
   const [emailFormatError, setEmailFormatError] = useState(false);
   const [courseError, setCourseError] = useState(false);
 
+  const [openRegistrationDialog, setOpenRegistrationDialog] = useState(false); // New state for registration dialog
   const [openRegisteredCoursesDialog, setOpenRegisteredCoursesDialog] =
     useState(false);
 
   const { registeredCourses, registerStudent } =
     useContext(RegistrationContext);
 
-  const handleRegistration = (event) => {
-    event.preventDefault();
+    // Helper function to validate form inputs
+    const validateForm = () => {
+      let isValid = true;
 
-    setNameError(false);
-    setEmailError(false);
-    setEmailFormatError(false);
-    setCourseError(false);
-    setMessage("");
-
-    let hasError = false;
-
-    if (!name.trim()) {
-      setNameError(true);
-      hasError = true;
-    }
+      if (!name.trim()) {
+        setNameError(true);
+        isValid = false;
+      } else {
+        setNameError(false);
+      }
 
     if (!email.trim()) {
       setEmailError(true);
-      hasError = true;
+      isValid = false;
     } else if (!emailRegex.test(email)) {
       setEmailFormatError(true);
-      hasError = true;
+      isValid = false;
+    } else {
+      setEmailError(false);
+      setEmailFormatError(false);
     }
 
     if (!selectedCourseId) {
       setCourseError(true);
-      hasError = true;
+      isValid = false;
+    } else {
+      setCourseError(false);
     }
 
-    if (hasError) {
+    return isValid;
+  };
+
+  const handleOpenRegistrationDialog = (event) => {
+    event.preventDefault(); // Prevent default form submission initially
+
+    setMessage(""); // Clear previous messages
+    setMessageType("Info"); // Reset message type
+
+    if (!validateForm()) {
       setMessage("Vänligen fyll i alla obligatoriska fält korrekt.");
       setMessageType("error");
-      setTimeout(() => {
-        setMessage("");
-      }, 5000);
+      setTimeout(() => setMessage(""), 5000);
       return;
     }
 
+    setOpenRegistrationDialog(true); // Open the registration confirmation dialog
+  };
+
+  const handleConfirmRegistration = () => {
     const selectedCourse = courses.find(
       (course) => course.id === selectedCourseId
     );
@@ -106,10 +118,15 @@ export default function RegistrationForm() {
       setMessage("Ett fel uppstod. Vänligen välj en giltig kurs.");
       setMessageType("error");
     }
-    // Clean message after 5 sec
+    setOpenRegistrationDialog(false); // Close the dialog after registration
     setTimeout(() => {
       setMessage("");
     }, 5000);
+  };
+
+  const handleCloseRegistrationDialog = () => {
+    setOpenRegistrationDialog(false);
+    setMessage(""); // Clear message if dialog is closed without confirming
   };
 
   const handleOpenRegisteredCoursesDialog = () => {
@@ -137,7 +154,7 @@ export default function RegistrationForm() {
       }}
       noValidate
       autoComplete="off"
-      onSubmit={handleRegistration}
+      onSubmit={handleOpenRegistrationDialog}
     >
       <Typography
         variant="h5"
@@ -161,10 +178,7 @@ export default function RegistrationForm() {
         variant="outlined"
         fullWidth
         value={name}
-        onChange={(e) => {
-          setName(e.target.value);
-          setNameError(false);
-        }}
+        onChange={(e) => setName(e.target.value)}
         required
         error={nameError}
         helperText={nameError ? "Namn får inte vara tomt" : ""}
@@ -176,11 +190,7 @@ export default function RegistrationForm() {
         type="email"
         fullWidth
         value={email}
-        onChange={(e) => {
-          setEmail(e.target.value);
-          setEmailError(false);
-          setEmailFormatError(false);
-        }}
+        onChange={(e) => setEmail(e.target.value)}
         required
         error={emailError || emailFormatError}
         helperText={
@@ -199,10 +209,7 @@ export default function RegistrationForm() {
           id="course-select"
           value={selectedCourseId}
           label="Välj kurs"
-          onChange={(e) => {
-            setSelectedCourseId(e.target.value);
-            setCourseError(false);
-          }}
+          onChange={(e) => setSelectedCourseId(e.target.value)}
           required
         >
           <MenuItem value="">
@@ -225,8 +232,6 @@ export default function RegistrationForm() {
           borderRadius: "8px",
           padding: "12px 0",
           fontSize: "1.1rem",
-          background: "linear-gradient(45deg, #2196F3 30%, #21CBF3 90%)",
-          boxShadow: "0 3px 5px 2px rgba(33, 203, 243, .3)",
         }}
       >
         Registrera
@@ -252,6 +257,33 @@ export default function RegistrationForm() {
         Antal registrerade kurser: {registeredCourses.length}
         <BackpackIcon fontSize="small" />
       </Typography>
+
+      {/* Material-UI Dialog for Registration Confirmation */}
+      <Dialog
+        onClose={handleCloseRegistrationDialog}
+        open={openRegistrationDialog}
+      >
+        <DialogTitle>Bekräfta registrering</DialogTitle>
+        <DialogContent>
+          <Typography>
+            Är du säker på att du vill registrera dig till kursen "
+            {courses.find((course) => course.id === selectedCourseId)?.name}"
+            med namnet "{name}" och email "{email}"?
+          </Typography>
+        </DialogContent>
+        <DialogActions>
+          <Button onClick={handleCloseRegistrationDialog} color="primary">
+            Avbryt
+          </Button>
+          <Button
+            onClick={handleConfirmRegistration}
+            color="primary"
+            variant="contained"
+          >
+            Bekräfta
+          </Button>
+        </DialogActions>
+      </Dialog>
 
       {/* Material-UI Full-Screen Dialog to show Registered Courses */}
       <Dialog
@@ -313,13 +345,16 @@ export default function RegistrationForm() {
                         >
                           Registreringsdatum:
                         </Typography>
-                        {` ${new Date(reg.registrationTime).toLocaleString('sv-SE', {
-                          year: 'numeric',
-                          month: '2-digit',
-                          day: '2-digit',
-                          hour: '2-digit',
-                          minute: '2-digit'
-                        })}.`}
+                        {` ${new Date(reg.registrationTime).toLocaleString(
+                          "sv-SE",
+                          {
+                            year: "numeric",
+                            month: "2-digit",
+                            day: "2-digit",
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          }
+                        )}.`}
                       </Typography>
                     }
                   />

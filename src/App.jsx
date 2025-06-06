@@ -1,12 +1,17 @@
 import React from "react";
 import "./App.css";
-import { Routes, Route, Link } from "react-router-dom";
-import Navbar from "./components/Navbar";
+import { Routes, Route } from "react-router-dom";
+
+// Pages
 import Home from "./pages/Home";
 import Courses from "./pages/Courses";
 import StudentsBlog from "./pages/StudentsBlog";
 import Registration from "./pages/Registration";
 import CourseDetails from "./pages/CourseDetails";
+
+// Components
+import Navbar from "./components/Navbar";
+import NotFound from "./components/NotFoundPage"; // 404 Not Found Page
 
 function App() {
   return (
@@ -16,20 +21,10 @@ function App() {
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
-          <Route path="courses/:id" element={<CourseDetails/>} />
+          <Route path="courses/:id" element={<CourseDetails />} />
           <Route path="/studentblogg" element={<StudentsBlog />} />
           <Route path="/registration" element={<Registration />} />
-          {/* Route -> wrong URL */}
-          <Route
-            path="*"
-            element={
-              <div className="text-center py-5">
-                <h2 className="display-4">404 - Sidan hittades inte</h2>
-                <p className="lead">Vi kunde inte hitta sidan du letade efter.</p>
-                <Link to="/" className="btn btn-primary mt-3">Gå till startsidan</Link>
-              </div>
-            }
-          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
     </>
