@@ -3,34 +3,49 @@ import React, { createContext, useState, useEffect } from 'react';
 // Create the context
 export const RegistrationContext = createContext();
 
+const LOCAL_STORAGE_KEY = "registeredCourses";
 // Create the provider component
 export const RegistrationProvider = ({ children }) => {
   const [registeredCourses, setRegisteredCourses] = useState(() => {
-    // Try to load from localStorage on initial render
-    const savedCourses = localStorage.getItem('registeredCourses');
+    try{
+    const savedCourses = localStorage.getItem(LOCAL_STORAGE_KEY);
     return savedCourses ? JSON.parse(savedCourses) : [];
+    } catch (error) {
+      console.error("Error loading registered courses from localStorage:", error);
+      return [];
+    }
   });
 
   // Save to localStorage whenever registeredCourses changes
   useEffect(() => {
-    localStorage.setItem('registeredCourses', JSON.stringify(registeredCourses));
+    try {
+      localStorage.setItem(LOCAL_STORAGE_KEY, JSON.stringify(registeredCourses));
+    } catch (error) {
+      console.error("Error saving registered courses to localStorage:", error);
+    }
   }, [registeredCourses]);
 
   // Function to add a new registration
-  const registerStudent = (name, email, courseId, courseName) => {
+  const registerStudent = (studentName, studentEmail, courseId, courseName) => {
+    const registrationTime = new Date().toISOString();
     const newRegistration = {
-      id: Date.now().toString(), // Unique ID for the registration
-      studentName: name,
-      studentEmail: email,
-      courseId: courseId,
-      courseName: courseName,
-      registrationDate: new Date().toLocaleDateString('sv-SE'),
+      id: Date.now(),
+      studentName,
+      studentEmail,
+      courseId,
+      courseName,
+      registrationTime,
     };
     setRegisteredCourses((prevCourses) => [...prevCourses, newRegistration]);
   };
 
+  const value = {
+    registeredCourses,
+    registerStudent,
+  };
+
   return (
-    <RegistrationContext.Provider value={{ registeredCourses, registerStudent }}>
+    <RegistrationContext.Provider value={value}>
       {children}
     </RegistrationContext.Provider>
   );
