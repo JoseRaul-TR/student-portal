@@ -65,16 +65,9 @@ const students = [
   },
 ];
 
-/**
- * Asynchronously fetches news posts from JSONPlaceholder and enriches them
- * with author information (name and image) from a local 'students' dataset.
- *
- * @returns {Array} An array of formatted news objects, sorted by date (newest first).
- * @throws {Error} If there's an issue fetching posts or processing data.
- */
 const fetchPosts = async () => {
   try {
-    // Attempt to fetch posts from the JSONPlaceholder API.
+    // Fetch posts from jsonplaceholder
     const postsResponse = await fetch(
       "https://jsonplaceholder.typicode.com/posts"
     );

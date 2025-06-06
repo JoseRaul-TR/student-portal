@@ -1,5 +1,7 @@
 import React from "react";
 
+import { Typography, Box } from "@mui/material";
+
 function BlogPost({ post }) {
   // Format the date here for display, as 'post.date' is now a Date object
   const formattedDate =
@@ -16,19 +18,18 @@ function BlogPost({ post }) {
               <img
                 src={post.authorImg}
                 alt={post.author}
-                className="rounded-circle"
-                style={{ width: "50px", height: "50px", objectFit: "cover" }}
+                className="rounded-circle blog-author-img"
               />
             </div>
           )}
-          <div className="">
-            <h5 className="card-title mb-2">{post.title}</h5>
-            <h6 className="card-subtitle mb-1 text-muted">
+          <Box sx={{ flexGrow: 1 }}>
+            <Typography variant="h6" component="h5" className="card-title mb-2">{post.title}</Typography>
+            <Typography variant="body2" component="h6" color="text.secondary" className="card-subtitle mb-1 text-muted">
               {formattedDate} av {post.author}
-            </h6>
-          </div>
+            </Typography>
+          </Box>
         </div>
-        <p className="card-text">{post.content}</p>
+        <Typography variant="body1" className="card-text">{post.content}</Typography>
       </div>
     </div>
   );
