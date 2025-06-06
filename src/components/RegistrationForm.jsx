@@ -10,15 +10,25 @@ import FormControl from "@mui/material/FormControl";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Alert from "@mui/material/Alert";
+import FormHelperText from "@mui/material/FormHelperText";
+import BackpackIcon from "@mui/icons-material/Backpack";
 
 import courses from "../data/courses";
+
+// Simple email validation regex
+const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export default function RegistrationForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [selectedCourseId, setSelectedCourseId] = useState("");
   const [message, setMessage] = useState("");
-  const [messageType, setMessageType] = useState('info');
+  const [messageType, setMessageType] = useState("info");
+
+  const [nameError, setNameError] = useState(false);
+  const [emailError, setEmailError] = useState(false);
+  const [emailFormatError, setEmailFormatError] = useState(false);
+  const [courseError, setCourseError] = useState(false);
 
   const { registeredCourses, registerStudent } =
     useContext(RegistrationContext);
@@ -26,9 +36,38 @@ export default function RegistrationForm() {
   const handleRegistration = (event) => {
     event.preventDefault();
 
-    if (!name || !email || !selectedCourseId) {
-      setMessage("Vänligen fyll i alla fält.");
+    setNameError(false);
+    setEmailError(false);
+    setEmailFormatError(false);
+    setCourseError(false);
+    setMessage("");
+
+    let hasError = false;
+
+    if (!name.trim()) {
+      setNameError(true);
+      hasError = true;
+    }
+
+    if (!email.trim()) {
+      setEmailError(true);
+      hasError = true;
+    } else if (!emailRegex.test(email)) {
+      setEmailFormatError(true);
+      hasError = true;
+    }
+
+    if (!selectedCourseId) {
+      setCourseError(true);
+      hasError = true;
+    }
+
+    if (hasError) {
+      setMessage("Vänligen fyll i alla obligatoriska fällt korrekt.");
       setMessageType("error");
+      setTimeout(() => {
+        setMessage("");
+      }, 5000);
       return;
     }
 
@@ -41,11 +80,15 @@ export default function RegistrationForm() {
       setMessage(
         `Tack, ${name}! Du har registrerat dig till kursen "${selectedCourse.name}".`
       );
-      setMessageType("succes");
+      setMessageType("success");
       // Reset form
       setName("");
       setEmail("");
       setSelectedCourseId("");
+      setNameError(false);
+      setEmailError(false);
+      setCourseError(false);
+      setEmailFormatError(false);
     } else {
       setMessage("Ett fel uppstod. Vänligen välj en giltig kurs.");
       setMessageType("error");
@@ -97,8 +140,13 @@ export default function RegistrationForm() {
         variant="outlined"
         fullWidth
         value={name}
-        onChange={(e) => setName(e.target.value)}
+        onChange={(e) => {
+          setName(e.target.value);
+          setNameError(false);
+        }}
         required
+        error={nameError}
+        helperText={nameError ? "Namn får inte vara tomt" : ""}
         sx={{ borderRadius: "8px" }}
       />
       <TextField
@@ -107,8 +155,20 @@ export default function RegistrationForm() {
         type="email"
         fullWidth
         value={email}
-        onChange={(e) => setEmail(e.target.value)}
+        onChange={(e) => {
+          setEmail(e.target.value);
+          setEmailError(false);
+          setEmailFormatError(false);
+        }}
         required
+        error={emailError || emailFormatError}
+        helperText={
+          emailError
+            ? "Email får inte vara tomt"
+            : emailFormatError
+            ? "Vänligen ange en giltig email-adress"
+            : ""
+        }
         sx={{ borderRadius: "8px" }}
       />
       <FormControl fullWidth sx={{ m: 1, minWidth: 120, borderRadius: "8px" }}>
@@ -118,7 +178,10 @@ export default function RegistrationForm() {
           id="course-select"
           value={selectedCourseId}
           label="Välj kurs"
-          onChange={(e) => setSelectedCourseId(e.target.value)}
+          onChange={(e) => {
+            setSelectedCourseId(e.target.value);
+            setCourseError(false);
+          }}
           required
         >
           <MenuItem value="">
@@ -130,6 +193,7 @@ export default function RegistrationForm() {
             </MenuItem>
           ))}
         </Select>
+        {courseError && <FormHelperText>Välj en kurs</FormHelperText>}
       </FormControl>
       <Button
         variant="contained"
@@ -148,9 +212,18 @@ export default function RegistrationForm() {
       </Button>
       <Typography
         variant="body2"
-        sx={{ mt: 2, width: "100%", textAlign: "center" }}
+        sx={{
+          mt: 2,
+          width: "100%",
+          textAlign: "center",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "1",
+        }}
       >
         Antal registrerade kurser: {registeredCourses.length}
+        <BackpackIcon fontSize="small" />
       </Typography>
     </Box>
   );
