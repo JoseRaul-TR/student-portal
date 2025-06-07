@@ -12,6 +12,7 @@ export const RegistrationProvider = ({ children }) => {
     return savedCourses ? JSON.parse(savedCourses) : [];
     } catch (error) {
       console.error("Error loading registered courses from localStorage:", error);
+      localStorage.removeItem(LOCAL_STORAGE_KEY); // Cleans corrupted data
       return [];
     }
   });

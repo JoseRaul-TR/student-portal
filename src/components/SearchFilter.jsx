@@ -34,18 +34,27 @@ export default function SearchFilter({
     <div>
       {/* Material-UI TextField for the search input */}
       <TextField
-        fullWidth // Makes the input field take up the full width available
-        variant="outlined" // Applies an outlined style to the input field
-        placeholder={placeholderText} // Sets the placeholder text
-        value={searchItem} // Binds the input's value to the `searchItem` state
+        fullWidth
+        variant="outlined"
+        placeholder={placeholderText}
+        value={searchItem}
         onChange={handleSearchChange}
-        slotProps={{
-          input: {
-            startAdornment: (
-              <InputAdornment position="start">
-                <SearchIcon />
-              </InputAdornment>
-            ),
+        InputProps={{
+          startAdornment: (
+            <InputAdornment position="start">
+              <SearchIcon color="action" />
+            </InputAdornment>
+          ),
+          sx: {
+            // Apply sx directly to the input container for themed styling
+            borderRadius: "8px",
+            backgroundColor: "background.paper",
+            "&.Mui-focused .MuiOutlinedInput-notchedOutline": {
+              borderColor: "primary.main",
+            },
+            "&:hover .MuiOutlinedInput-notchedOutline": {
+              borderColor: "secondary.main",
+            },
           },
         }}
         sx={{ mb: 4 }} // Applies Material-UI system styling for a margin-bottom

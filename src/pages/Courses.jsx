@@ -27,9 +27,14 @@ export default function Courses() {
   });
 
   return (
-    <Box sx={{ p: 2 }}> {/* Add some padding to the main container */}
-      <Typography variant="h4" component="h1" gutterBottom sx={{ mb: 4 }}>
-        Våra Kurser
+    <Box sx={{ p: { xs: 2, md: 4 } }}>
+      <Typography
+        variant="h3"
+        component="h1"
+        gutterBottom
+        sx={{ mb: 4, color: "primary.main", textAlign: 'center' }}
+      >
+        Kurskatalog
       </Typography>
       {/* Use the SearchFilter component as a pure input controller */}
       <SearchFilter
@@ -47,7 +52,20 @@ export default function Courses() {
           ) : (
             // If no course matches the search
             <div className="col-12">
-              <div className="alert alert-info text-center" role="alert">
+              <div
+                className="alert alert-info text-center"
+                role="alert"
+                style={{
+                  backgroundColor: "var(--hogwarts-parchment)",
+                  color: "var(--hogwarts-text-dark)",
+                  borderColor: "var(--hogwarts-gold)",
+                  borderWidth: "2px",
+                  borderRadius: "0.75rem",
+                  padding: "2rem",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
+                  marginTop: "1rem",
+                }}
+              >
                 Inga kurser hittades som matchar din sökning.
               </div>
             </div>

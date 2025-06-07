@@ -1,63 +1,96 @@
+@import url("https://fonts.googleapis.com/css2?family=Cinzel:wght@400;700&family=Merriweather:wght@400;700&family=Roboto:wght@300;400;500;700&display=swap");
+
+:root {
+  /* Define CSS Variables for your Hogwarts Colors */
+  --hogwarts-primary-dark: #2b2b4a; /* Deep Castle Stone */
+  --hogwarts-secondary-red: #7b1c2f; /* Rich Burgundy */
+  --hogwarts-parchment: #f8f2e2; /* Aged Parchment */
+  --hogwarts-text-dark: #333333; /* Standard Dark Text */
+  --hogwarts-text-light: #fafafa; /* Near White Text */
+  --hogwarts-gold: #c8ae7f; /* Warm Gold */
+  --hogwarts-dark-green: #1b5e20; /* Enchanted Forest Green */
+  --hogwarts-silver: #aaaaaa; /* For Ravenclaw/Slytherin accents */
+
+  /* House Colors (Optional, for specific uses) */
+  --gryffindor-red: #7f0909;
+  --gryffindor-gold: #eeba30;
+  --hufflepuff-yellow: #ffd800;
+  --hufflepuff-black: #372e29;
+  --ravenclaw-blue: #0e1a40;
+  --ravenclaw-bronze: #946b2d;
+  --slytherin-green: #1a472a;
+  --slytherin-silver: #aaaaaa;
+}
+
 body {
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: 'Roboto', sans-serif;
-  background-color: #f8f9fa;
-  color: #212529;
+  font-family: "Roboto", sans-serif; /* Keep Roboto as you're importing it */
+  background-color: var(
+    --hogwarts-parchment
+  ); /* Use parchment for background */
+  color: var(--hogwarts-text-dark); /* Dark text on light background */
   min-height: 100vh;
   display: flex;
   flex-direction: column;
 }
 
 #root {
-  flex-grow: 1; 
+  flex-grow: 1;
   display: flex;
   flex-direction: column;
 }
 
 .container {
-  flex-grow: 1; 
+  flex-grow: 1;
   max-width: 960px;
+  /* Optional: Add some padding for consistency with the new theme */
+  padding-left: 16px;
+  padding-right: 16px;
 }
 
-/* Styling for Bootstrap components */
+/* Styling for Bootstrap components - Overrides */
 .navbar {
-  border-bottom: 1px solid rgba(0, 0, 0, 0.1);
-  box-shadow: 0 2px 4px rgba(0,0,0,.05);
+  background-color: var(--hogwarts-primary-dark) !important; /* Dark Navbar */
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border for dark navbar */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Stronger shadow for dark navbar */
+  color: var(--hogwarts-text-light); /* Light text for navbar */
 }
 
 .navbar-brand {
   font-weight: 700;
   font-size: 1.5rem;
+  color: var(--hogwarts-gold) !important; /* Gold brand text */
 }
 
 .nav-link {
   font-weight: 500;
-  color: rgba(0, 0, 0, 0.7);
+  color: var(--hogwarts-text-light) !important; /* Light text for links */
   transition: color 0.3s ease;
 }
 
 .nav-link:hover {
-  color: #007bff; 
+  color: var(--hogwarts-gold) !important; /* Gold on hover */
 }
 
 .nav-link.active {
-  color: #007bff;
+  color: var(--hogwarts-gold) !important; /* Gold for active link */
   font-weight: 700;
 }
 
 .card {
-  border-radius: 0.75rem;
+  border-radius: 0.75rem; /* Already good */
   border: none;
-  box-shadow: 0 4px 8px rgba(0,0,0,0.05);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* MUI Paper handles this now for MUI components */
   transition: transform 0.2s ease-in-out;
+  background-color: var(
+    --hogwarts-parchment
+  ); /* Cards on parchment background */
+  color: var(--hogwarts-text-dark); /* Dark text on cards */
 }
 
-.card:hover {
-  transform: translateY(-5px);
-}
-
+/* If you need specific styles for Bootstrap buttons not handled by MUI components */
 .btn {
   border-radius: 0.5rem;
   font-weight: 500;
@@ -65,36 +98,41 @@ body {
 }
 
 .btn-primary {
-  background-color: #007bff;
-  border-color: #007bff;
+  background-color: var(
+    --hogwarts-secondary-red
+  ); /* Burgundy for primary BTN */
+  border-color: var(--hogwarts-secondary-red);
+  color: var(--hogwarts-text-light);
 }
 
 .btn-primary:hover {
-  background-color: #0056b3;
-  border-color: #0056b3;
+  background-color: #5b0f1f; /* Darker Burgundy */
+  border-color: #5b0f1f;
 }
 
 .btn-secondary {
-  background-color: #6c757d;
-  border-color: #6c757d;
+  background-color: var(--hogwarts-gold); /* Gold for secondary BTN */
+  border-color: var(--hogwarts-gold);
+  color: var(--hogwarts-text-dark); /* Dark text on gold */
 }
 
 .btn-secondary:hover {
-  background-color: #545b62;
-  border-color: #545b62;
+  background-color: #b0956a; /* Darker Gold */
+  border-color: #b0956a;
 }
 
 .btn-success {
-  background-color: #28a745;
-  border-color: #28a745;
+  background-color: var(--hogwarts-dark-green); /* Green for success BTN */
+  border-color: var(--hogwarts-dark-green);
+  color: var(--hogwarts-text-light);
 }
 
 .btn-success:hover {
-  background-color: #218838;
-  border-color: #218838;
+  background-color: #113e14; /* Darker Green */
+  border-color: #113e14;
 }
 
-/* Responsive adjustments */
+/* Responsive adjustments - Keep these as they are good */
 @media (max-width: 767.98px) {
   .navbar-brand {
     font-size: 1.25rem;
@@ -107,15 +145,28 @@ body {
   .offcanvas-header {
     justify-content: space-between;
     padding: 1rem;
+    background-color: var(
+      --hogwarts-primary-dark
+    ); /* Dark background for offcanvas header */
+    color: var(--hogwarts-text-light);
+  }
+  .offcanvas-header .btn-close {
+    filter: invert(1); /* Make close button white on dark background */
+  }
+  .offcanvas-body {
+    background-color: var(
+      --hogwarts-primary-dark
+    ); /* Dark background for offcanvas body */
+    color: var(--hogwarts-text-light);
   }
 }
 
 /* Home page specific styles */
 .home-section {
-  background-color: #ffffff;
+  background-color: #ffffff; /* Could be parchment for a more antique feel */
   border-radius: 1rem;
   padding: 3rem;
-  box-shadow: 0 8px 16px rgba(0,0,0,0.08);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
 .home-crest {
@@ -125,12 +176,12 @@ body {
 }
 
 .home-section .display-4 {
-  color: #007bff;
+  color: var(--hogwarts-secondary-red); /* Use burgundy for display headings */
   font-weight: 700;
 }
 
 .home-section .lead {
-  color: #6c757d;
+  color: var(--hogwarts-text-dark); /* Dark text for lead paragraphs */
 }
 
 .quick-menu-buttons .btn {
@@ -139,12 +190,15 @@ body {
 
 .teacher-img-detail {
   width: 200px;
-  height: auto;
+  height: 200px;
+  border-radius: 50%;
   object-fit: cover;
 }
 
 .blog-author-img {
-  width: 50px;
-  height: 50px;
+  width: 70px;
+  height: 70px;
+  border-radius: 50%;
   object-fit: cover;
+  display: block;
 }

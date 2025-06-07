@@ -16,9 +16,9 @@ export default function HogwartsLoadingSpinner() {
           >
             {/* Gryffindor Red */}
             <stop offset="0%" stopColor="#740001" />
-            {/* Hufflepuff Yellow */}
-            <stop offset="33%" stopColor="#1A472A" />
             {/* Slytherin Green */}
+            <stop offset="33%" stopColor="#1A472A" />
+            {/* Hufflepuff Yellow */}
             <stop offset="66%" stopColor="#FFD700" />
             {/* Ravenclaw Blue */}
             <stop offset="100%" stopColor="#222F5B" />
@@ -27,8 +27,8 @@ export default function HogwartsLoadingSpinner() {
       </svg>
       <CircularProgress
         sx={{ "svg circle": { stroke: "url(#hogwarts_gradient)" } }}
-        size={100} // Adjust size as needed
-        thickness={6} // Adjust thickness as needed
+        size={100}
+        thickness={6}
         disableShrink
       />
     </React.Fragment>

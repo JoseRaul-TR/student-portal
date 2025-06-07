@@ -8,7 +8,7 @@ export default function CourseCard({ course }) {
   return (
     <div className="card h-100 shadow-sm">
       <div className="card-body d-flex flex-column">
-        <Typography variant="h6" component="h5" className="card-title">
+        <Typography variant="h6" component="h5" className="card-title" sx={{ color: 'primary.main' }}>
           {course.name}
         </Typography>
         <Typography
@@ -23,7 +23,7 @@ export default function CourseCard({ course }) {
           to={`/courses/${course.id}`}
           variant="contained"
           color="primary"
-          sx={{ mt: 3, borderRadius: "0.5rem" }}
+          sx={{ mt: 3 }}
         >
           Läs mer
         </Button>

@@ -8,8 +8,8 @@ export default function Registration() {
       <Typography
         variant="h3"
         component="h1"
-        className="mb-4 text-center"
         gutterBottom
+        sx={{ color: "primary.main", mb: "4", textAlign: "center" }}
       >
         Kursregistrering
       </Typography>

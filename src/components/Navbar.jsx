@@ -5,7 +5,7 @@ import NavItems from "./NavItems";
 
 export default function Navbar() {
   return (
-    <nav className="navbar navbar-light bg-light p-2 py-md-3 px-md-4 container-fluid d-flex align-items-center">
+    <nav className="navbar navbar-dark p-2 py-md-3 px-md-4 container-fluid d-flex align-items-center">
       {/* Layout for small screens (< md) */}
       <div className="d-flex d-md-none justify-content-between w-100 align-items-center">
         {/* Using BrandLogo component for mobile view */}
@@ -46,7 +46,7 @@ export default function Navbar() {
 
       {/* Offcanvas Menu for Mobile (visible below md breakpoint) */}
       <div
-        className="offcanvas offcanvas-end bg-light d-md-none"
+        className="offcanvas offcanvas-end navbar-dark d-md-none"
         tabIndex="-1"
         id="offcanvasNavbar"
         aria-labelledby="offcanvasNavbarLabel"
@@ -54,7 +54,7 @@ export default function Navbar() {
         <div className="offcanvas-header">
           <div className="flex-grow-1 d-flex justify-content-center align-items-center">
             {/* Using BrandLogo component for offcanvas header */}
-            <BrandLogo orientation="vertical" imgHeight="50px" showText={true} />
+            <BrandLogo orientation="vertical" imgHeight="45px" showText={true} />
           </div>
           {/* Close button for the offcanvas menu */}
           <button

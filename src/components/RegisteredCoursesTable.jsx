@@ -21,7 +21,7 @@ import CloseIcon from "@mui/icons-material/Close";
 // --- Table Sorting Logic ---
 function descendingComparator(a, b, orderBy) {
   // Handle Date objects for sorting 'registrationTime'
-  if (orderBy === 'registrationTime') {
+  if (orderBy === "registrationTime") {
     const dateA = new Date(a[orderBy]);
     const dateB = new Date(b[orderBy]);
     if (dateB < dateA) {
@@ -44,7 +44,7 @@ function descendingComparator(a, b, orderBy) {
 }
 
 function getComparator(order, orderBy) {
-  return order === 'desc'
+  return order === "desc"
     ? (a, b) => descendingComparator(a, b, orderBy)
     : (a, b) => -descendingComparator(a, b, orderBy);
 }
@@ -52,28 +52,28 @@ function getComparator(order, orderBy) {
 // Head cells for the registered courses table
 const registeredCoursesHeadCells = [
   {
-    id: 'courseName',
+    id: "courseName",
     numeric: false,
     disablePadding: false,
-    label: 'Kurs',
+    label: "Kurs",
   },
   {
-    id: 'studentName',
+    id: "studentName",
     numeric: false,
     disablePadding: false,
-    label: 'Studentnamn',
+    label: "Studentnamn",
   },
   {
-    id: 'studentEmail',
+    id: "studentEmail",
     numeric: false,
     disablePadding: false,
-    label: 'E-postadress',
+    label: "E-postadress",
   },
   {
-    id: 'registrationTime',
+    id: "registrationTime",
     numeric: true, // Treat time as numeric for sorting
     disablePadding: false,
-    label: 'Registreringsdatum',
+    label: "Registreringsdatum",
   },
 ];
 
@@ -85,24 +85,46 @@ function EnhancedTableHead(props) {
   };
 
   return (
-    <TableHead>
+    <TableHead
+      sx={{
+        backgroundColor: "primary.light",
+        "& .MuiTableCell-head": {
+          color: "primary.contrastText",
+          fontWeight: "bold",
+        },
+      }}
+    >
       <TableRow>
         {registeredCoursesHeadCells.map((headCell) => (
           <TableCell
             key={headCell.id}
-            align={headCell.numeric ? 'right' : 'left'}
-            padding={headCell.disablePadding ? 'none' : 'normal'}
+            align={headCell.numeric ? "right" : "left"}
+            padding={headCell.disablePadding ? "none" : "normal"}
             sortDirection={orderBy === headCell.id ? order : false}
           >
             <TableSortLabel
               active={orderBy === headCell.id}
-              direction={orderBy === headCell.id ? order : 'asc'}
+              direction={orderBy === headCell.id ? order : "asc"}
               onClick={createSortHandler(headCell.id)}
+              sx={{
+                fontWeight: "normal",
+                color: "primary.contrastText",
+                "& .MuiSvgIcon-root": {
+                  color: "primary.contrastText",
+                },
+                "&.Mui-active": {
+                  fontWeight: "bolder",
+                  color: "primary.contrastText",
+                  "& .MuiSvgIcon-root": {
+                    color: "primary.contrastText",
+                  },
+                },
+              }}
             >
               {headCell.label}
               {orderBy === headCell.id ? (
                 <Box component="span" sx={visuallyHidden}>
-                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                  {order === "desc" ? "sorted descending" : "sorted ascending"}
                 </Box>
               ) : null}
             </TableSortLabel>
@@ -115,7 +137,7 @@ function EnhancedTableHead(props) {
 
 EnhancedTableHead.propTypes = {
   onRequestSort: PropTypes.func.isRequired,
-  order: PropTypes.oneOf(['asc', 'desc']).isRequired,
+  order: PropTypes.oneOf(["asc", "desc"]).isRequired,
   orderBy: PropTypes.string.isRequired,
 };
 
@@ -126,10 +148,12 @@ function EnhancedTableToolbar({ onClose }) {
       sx={{
         pl: { sm: 2 },
         pr: { xs: 1, sm: 1 },
+        backgroundColor: "secondary.main",
+        color: "secondary.contrastText",
       }}
     >
       <Typography
-        sx={{ flex: '1 1 100%' }}
+        sx={{ flex: "1 1 100%" }}
         variant="h6"
         id="tableTitle"
         component="div"
@@ -137,7 +161,17 @@ function EnhancedTableToolbar({ onClose }) {
         Registrerade kurser
       </Typography>
       <Tooltip title="Stäng tabell">
-        <IconButton onClick={onClose} aria-label="stäng">
+        <IconButton
+          onClick={onClose}
+          aria-label="stäng"
+          sx={{
+            color: "secondary.contrastText",
+            transition: "color 0.2s ease-in-out",
+            "&:hover": {
+              color: "action.active",
+            },
+          }}
+        >
           <CloseIcon />
         </IconButton>
       </Tooltip>
@@ -146,37 +180,52 @@ function EnhancedTableToolbar({ onClose }) {
 }
 
 EnhancedTableToolbar.propTypes = {
-    onClose: PropTypes.func.isRequired,
+  onClose: PropTypes.func.isRequired,
 };
 
 // --- Main RegisteredCoursesTable Component ---
-export default function RegisteredCoursesTable({ data, onClose  }) {
-  const [order, setOrder] = useState('asc');
-  const [orderBy, setOrderBy] = useState('registrationTime');
+export default function RegisteredCoursesTable({ data, onClose }) {
+  const [order, setOrder] = useState("asc");
+  const [orderBy, setOrderBy] = useState("registrationTime");
 
   // Dense padding default in the table
   const dense = true;
 
   const handleRequestSort = (event, property) => {
-    const isAsc = orderBy === property && order === 'asc';
-    setOrder(isAsc ? 'desc' : 'asc');
+    const isAsc = orderBy === property && order === "asc";
+    setOrder(isAsc ? "desc" : "asc");
     setOrderBy(property);
   };
 
   const sortedData = useMemo(
     () => [...data].sort(getComparator(order, orderBy)),
-    [order, orderBy, data],
+    [order, orderBy, data]
   );
 
   return (
-    <Box sx={{ width: '100%' }}>
-      <Paper sx={{ width: '100%', mb: 2 }}>
+    <Box
+      sx={{
+        width: "100%",
+        flexGrow: 1,
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      <Paper
+        sx={{
+          width: "100%",
+          mb: 2,
+          flexGrow: 1,
+          display: "flex",
+          flexDirection: "column",
+        }}
+      >
         <EnhancedTableToolbar onClose={onClose} />
-        <TableContainer sx={{ overflowX: 'auto' }}>
+        <TableContainer sx={{ overflowX: "auto", flexGrow: 1 }}>
           <Table
             sx={{ minWidth: 750 }}
             aria-labelledby="tableTitle"
-            size={dense ? 'small' : 'medium'}
+            size={dense ? "small" : "medium"}
           >
             <EnhancedTableHead
               order={order}
@@ -187,10 +236,16 @@ export default function RegisteredCoursesTable({ data, onClose  }) {
               {sortedData.length > 0 ? (
                 sortedData.map((row) => (
                   <TableRow
-                    hover
                     tabIndex={-1}
                     key={row.id}
-                    sx={{ cursor: 'pointer' }}
+                    sx={{
+                      "&:nth-of-type(odd)": {
+                        backgroundColor: "hogwarts.parchment",
+                      },
+                      "&:nth-of-type(even)": {
+                        backgroundColor: "background.paper",
+                      },
+                    }}
                   >
                     <TableCell align="left">{row.courseName}</TableCell>
                     <TableCell align="left">{row.studentName}</TableCell>
@@ -208,15 +263,18 @@ export default function RegisteredCoursesTable({ data, onClose  }) {
                 ))
               ) : (
                 <TableRow>
-                  <TableCell colSpan={registeredCoursesHeadCells.length} sx={{ textAlign: 'center', p: 4 }}>
+                  <TableCell
+                    colSpan={registeredCoursesHeadCells.length}
+                    sx={{ textAlign: "center", p: 4, color: "text.secondary" }}
+                  >
                     Inga kurser är registrerade ännu.
                   </TableCell>
                 </TableRow>
               )}
             </TableBody>
           </Table>
-          </TableContainer>
-          </Paper>
+        </TableContainer>
+      </Paper>
     </Box>
   );
 }

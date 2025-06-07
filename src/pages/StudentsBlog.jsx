@@ -99,7 +99,7 @@ export default function StudentsBlog() {
         }}
       >
         <HogwartsLoadingSpinner />
-        <Typography variant="body1" sx={{ mt: 3 }}>
+        <Typography variant="body1" sx={{ mt: 3, color: "text.secondary" }}>
           Laddar blogginlägg...
         </Typography>
       </Box>
@@ -107,7 +107,10 @@ export default function StudentsBlog() {
   }
   if (error) {
     return (
-      <Alert severity="error" sx={{ m: 3, textAlign: "center" }}>
+      <Alert
+        severity="error"
+        sx={{ m: 3, textAlign: "center", borderRadius: "8px" }}
+      >
         {error}
       </Alert>
     );
@@ -120,7 +123,14 @@ export default function StudentsBlog() {
 
   return (
     <>
-      <h1 className="mb-4">Studentblogg</h1>
+      <Typography
+        variant="h3"
+        component="h1"
+        gutterBottom
+        sx={{ mb: 4, color: "primary.main", textAlign: "center" }}
+      >
+        Studentblogg
+      </Typography>
 
       <SearchFilter
         placeholderText="Sök efter titel, innehåll eller författare..."
@@ -136,7 +146,21 @@ export default function StudentsBlog() {
                 </div>
               ))
             ) : (
-              <div className="alert alert-info text-center" role="alert">
+              // If no blog posts match the search
+              <div
+                className="alert alert-info text-center"
+                role="alert"
+                style={{
+                  backgroundColor: "var(--hogwarts-parchment)",
+                  color: "var(--hogwarts-text-dark)",
+                  borderColor: "var(--hogwarts-gold)",
+                  borderWidth: "2px",
+                  borderRadius: "0.75rem",
+                  padding: "2rem",
+                  boxShadow: "0 4px 8px rgba(0,0,0,0.05)",
+                  marginTop: "1rem",
+                }}
+              >
                 Inga blogginlägg hittades som matchade din sökning.
               </div>
             )}

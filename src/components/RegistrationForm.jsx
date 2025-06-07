@@ -2,7 +2,7 @@ import React, { useState, useContext, useEffect } from "react";
 import { RegistrationContext } from "../contexts/RegistrationContext";
 import { useFormInput } from "../hooks/useFormInput";
 import { useFormValidation } from "../hooks/useFormValidation";
-import RegisteredCoursesTable from "../components/RegisteredCoursesTable"; // Import the new component
+import RegisteredCoursesTable from "../components/RegisteredCoursesTable";
 
 import TextField from "@mui/material/TextField";
 import Button from "@mui/material/Button";
@@ -19,10 +19,18 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Tooltip from "@mui/material/Tooltip";
+import Slide from "@mui/material/Slide"; // Import Slide for the transition
 
 import BackpackIcon from "@mui/icons-material/Backpack";
+import IconButton from "@mui/material/IconButton";
+import CloseIcon from "@mui/icons-material/Close";
 
 import courses from "../data/courses";
+
+// Define the Transition component outside the main component for performance
+const Transition = React.forwardRef(function Transition(props, ref) {
+  return <Slide direction="up" ref={ref} {...props} />;
+});
 
 export default function RegistrationForm() {
   // Use custom hooks for form inputs
@@ -63,7 +71,7 @@ export default function RegistrationForm() {
 
     // Validate form using the hook useFormValidation.js
     if (!validate()) {
-      setMessage("Vänligen fyll i alla obligatoriska fält korrekt.");
+      setMessage("Vänligen fyll i alla fält");
       setMessageType("error");
       return; // Validation failed, do not open dialog
     }
@@ -124,9 +132,7 @@ export default function RegistrationForm() {
         maxWidth: "500px",
         margin: "auto",
         p: 3,
-        borderRadius: "12px",
-        boxShadow: "0 4px 8px rgba(0,0,0,0.1)",
-        backgroundColor: "#fff",
+        backgroundColor: "background.paper",
       }}
       noValidate
       autoComplete="off"
@@ -135,9 +141,14 @@ export default function RegistrationForm() {
       <Typography
         variant="h5"
         component="h2"
-        sx={{ mb: 3, width: "100%", textAlign: "center" }}
+        sx={{
+          mb: 3,
+          width: "100%",
+          textAlign: "center",
+          color: "primary.main",
+        }}
       >
-        Registrera dig
+        Fyll i följande uppgifter
       </Typography>
 
       {message && (
@@ -158,7 +169,6 @@ export default function RegistrationForm() {
         required
         error={!!errors.name}
         helperText={errors.name || ""}
-        sx={{ borderRadius: "8px" }}
       />
       <TextField
         label="Email"
@@ -170,9 +180,8 @@ export default function RegistrationForm() {
         required
         error={!!errors.email}
         helperText={errors.email || ""}
-        sx={{ borderRadius: "8px" }}
       />
-      <FormControl fullWidth sx={{ m: 1, minWidth: 120, borderRadius: "8px" }}>
+      <FormControl fullWidth sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="course-select-label">Välj kurs</InputLabel>
         <Select
           labelId="course-select-label"
@@ -182,6 +191,7 @@ export default function RegistrationForm() {
           onChange={selectedCourseId.onChange}
           required
           error={!!errors.selectedCourseId}
+          sx={{ borderRadius: "8px" }}
         >
           <MenuItem value="">
             <em>Ingen</em>
@@ -202,7 +212,6 @@ export default function RegistrationForm() {
         sx={{
           mt: 3,
           width: "100%",
-          borderRadius: "8px",
           padding: "12px 0",
           fontSize: "1.1rem",
         }}
@@ -218,16 +227,25 @@ export default function RegistrationForm() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          gap: "0.8",
+          gap: 1,
+          color: "text.secondary",
         }}
       >
         Antal registrerade kurser: {registeredCourses.length}
         <Tooltip title="Visa registrerade kurser">
-        <BackpackIcon
-          fontSize="small"
-          sx={{ cursor: "pointer", "&:hover": { color: "primary.main" } }}
-          onClick={handleOpenRegisteredCoursesDialog}
-        />
+          <BackpackIcon
+            fontSize="small"
+            sx={{
+              cursor: "pointer",
+              color: "primary.main",
+              transition: "color 0.2s ease-in-out",
+              "&:hover": {
+                color: "secondary.main",
+                transform: "scale(1.1)",
+              },
+            }}
+            onClick={handleOpenRegisteredCoursesDialog}
+          />
         </Tooltip>
       </Typography>
 
@@ -235,20 +253,42 @@ export default function RegistrationForm() {
       <Dialog
         onClose={handleCloseRegistrationDialog}
         open={openRegistrationDialog}
+        PaperProps={{
+          sx: {
+            backgroundColor: "background.paper",
+            borderRadius: "12px",
+            boxShadow: 3,
+          },
+        }}
       >
-        <DialogTitle>Bekräfta registrering</DialogTitle>
-        <DialogContent>
-          <Typography>
+        <DialogTitle
+          sx={{
+            color: "primary.dark",
+            borderBottom: "1px solid",
+            borderColor: "divider",
+          }}
+        >
+          Bekräfta registrering
+        </DialogTitle>
+        <DialogContent sx={{ pt: 2 }}>
+          <Typography sx={{ pt: 1 }}>
             Är du säker på att du vill registrera dig till kursen "
             {
               courses.find((course) => course.id === selectedCourseId.value)
                 ?.name
             }
-            " med namnet "{name.value}" och email "{email.value}"?
+            " med namnet "<strong>{name.value}</strong>" och email "
+            <strong>{email.value}</strong>"?
           </Typography>
         </DialogContent>
-        <DialogActions>
-          <Button onClick={handleCloseRegistrationDialog} color="error">
+        <DialogActions
+          sx={{ borderTop: "1px solid", borderColor: "divider", pt: 1 }}
+        >
+          <Button
+            onClick={handleCloseRegistrationDialog}
+            color="error"
+            variant="outlined"
+          >
             Avbryt
           </Button>
           <Button
@@ -261,27 +301,27 @@ export default function RegistrationForm() {
         </DialogActions>
       </Dialog>
 
-      {/* Material-UI Full-Screen Dialog to show Registered Courses as a Table */}
+      {/* Material-UI Dialog to show Registered Courses as a Table with Transition */}
       <Dialog
-        onClose={handleCloseRegisteredCoursesDialog}
         open={openRegisteredCoursesDialog}
-        fullScreen
+        slots={Transition}
+        keepMounted
+        onClose={handleCloseRegisteredCoursesDialog}
+        aria-labelledby="registered-courses-dialog-title"
+        maxWidth="lg"
+        fullWidth
         sx={{
-          ".MuiDialog-paperFullScreen": {
-            display: "flex",
-            flexDirection: "column",
-          },
+          backgroundColor: "background.paper",
+          borderRadius: "12px",
+          boxShadow: 5,
         }}
       >
         <DialogContent
           sx={{
-            display: "flex",
-            flexDirection: "column",
-            flexGrow: 1,
             p: 0,
           }}
         >
-          {/* Table component takes up remaining space */}
+          {/* RegisteredCoursesTable component will take up space as needed */}
           <RegisteredCoursesTable
             data={registeredCourses}
             onClose={handleCloseRegisteredCoursesDialog}

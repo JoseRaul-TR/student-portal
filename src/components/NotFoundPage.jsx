@@ -16,6 +16,12 @@ export default function NotFound() {
         alignItems: "center",
         justifyContent: "center",
         minHeight: "60vh",
+        backgroundColor: "background.paper",
+        borderRadius: "12px",
+        boxShadow: 3,
+        p: { xs: 3, md: 5 },
+        maxWidth: "600px",
+        margin: "auto",
       }}
     >
       <Typography variant="h2" component="h2" gutterBottom>
