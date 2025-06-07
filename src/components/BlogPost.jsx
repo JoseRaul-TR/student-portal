@@ -1,37 +1,34 @@
 import React from "react";
 
-import { Typography, Box } from "@mui/material";
+import { Typography, Box, Tooltip, Avatar } from "@mui/material";
 
-function BlogPost({ post }) {
-  // Format the date here for display, as 'post.date' is now a Date object
-  const formattedDate =
-    post.date instanceof Date
-      ? post.date.toLocaleDateString("sv-SE", {
-          year: "numeric",
-          month: "long",
-          day: "numeric",
-        })
-      : post.date; // Fallback if for some reason it is not a Date object
+import { formatTimeAgo, formatExactDateTime } from "../utils/dateUtils";
+
+
+export default function BlogPost({ post }) {
 
   return (
-    <div className="card shadow-sm mb-3">
+   <div className="card shadow-sm mb-3">
       <div className="card-body">
-        <div
+        <Box
           className="card-header d-flex align-items-center mb-3"
-          style={{
+          sx={{
             backgroundColor: "var(--hogwarts-parchment-light)",
             borderBottom: "1px solid var(--hogwarts-gold)",
             borderRadius: "0.5rem",
             padding: "1rem",
+            display: 'flex',
+            alignItems: 'center',
           }}
         >
           {post.authorImg && (
             <div className="author-image-container me-2">
-              <img
+              <Avatar
                 src={post.authorImg}
                 alt={post.author}
-                className="blog-author-img"
-                style={{
+                sx={{
+                  width: 60,
+                  height: 60,
                   border: "2px solid var(--hogwarts-darkGreen)",
                   boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
                 }}
@@ -47,16 +44,26 @@ function BlogPost({ post }) {
             >
               {post.title}
             </Typography>
-            <Typography
-              variant="body2"
-              component="h6"
-              color="text.secondary"
-              className="card-subtitle text-muted"
-            >
-              {formattedDate} av {post.author}
-            </Typography>
+            {/* Implement Tooltip for the date */}
+            <Tooltip title={formatExactDateTime(post.date)} placement="top-start" arrow>
+              <Typography
+                variant="body2"
+                component="h6"
+                color="text.secondary"
+                className="card-subtitle text-muted"
+                sx={{
+                  display: 'inline-block',
+                  cursor: 'help',
+                  '&:hover': {
+                    textDecoration: 'underline',
+                  }
+                }}
+              >
+                {post.author}, {formatTimeAgo(post.date)} 
+              </Typography>
+            </Tooltip>
           </Box>
-        </div>
+        </Box>
         <Typography variant="body1" className="card-text">
           {post.content}
         </Typography>
@@ -65,4 +72,3 @@ function BlogPost({ post }) {
   );
 }
 
-export default BlogPost;

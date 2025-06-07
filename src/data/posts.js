@@ -123,7 +123,7 @@ const fetchPosts = async () => {
         content: post.body,
         date: randomDate,
         author: authorInfo.name,
-        authorImg: authorInfo.img,
+        authorImg: authorInfo.img, 
       };
     });
 
