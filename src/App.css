@@ -7,7 +7,7 @@
   --hogwarts-parchment: #f8f2e2; /* Aged Parchment */
   --hogwarts-text-dark: #333333; /* Standard Dark Text */
   --hogwarts-text-light: #fafafa; /* Near White Text */
-  --hogwarts-gold: #c8ae7f; /* Warm Gold */
+  --hogwarts-gold: #ffc14e; /* Warm Gold */
   --hogwarts-dark-green: #1b5e20; /* Enchanted Forest Green */
   --hogwarts-silver: #aaaaaa; /* For Ravenclaw/Slytherin accents */
 
@@ -26,11 +26,7 @@ body {
   margin: 0;
   border: 0;
   box-sizing: border-box;
-  font-family: "Roboto", sans-serif; /* Keep Roboto as you're importing it */
-  background-color: var(
-    --hogwarts-parchment
-  ); /* Use parchment for background */
-  color: var(--hogwarts-text-dark); /* Dark text on light background */
+  font-family: "Roboto", sans-serif;
   min-height: 100vh;
   display: flex;
   flex-direction: column;
@@ -42,146 +38,37 @@ body {
   flex-direction: column;
 }
 
+.gradient-background {
+  background: linear-gradient( 135deg, var(--hogwarts-primary-dark), #3f3f6e);
+  min-height: 100vh; /* Ensure it covers the full viewport */
+}
+
+/* Custom .container style, complementing Bootstrap's .container class */
 .container {
-  flex-grow: 1;
-  max-width: 960px;
-  /* Optional: Add some padding for consistency with the new theme */
-  padding-left: 16px;
-  padding-right: 16px;
-}
-
-/* Styling for Bootstrap components - Overrides */
-.navbar {
-  background-color: var(--hogwarts-primary-dark) !important; /* Dark Navbar */
-  border-bottom: 1px solid rgba(255, 255, 255, 0.1); /* Lighter border for dark navbar */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Stronger shadow for dark navbar */
-  color: var(--hogwarts-text-light); /* Light text for navbar */
-}
-
-.navbar-brand {
-  font-weight: 700;
-  font-size: 1.5rem;
-  color: var(--hogwarts-gold) !important; /* Gold brand text */
-}
-
-.nav-link {
-  font-weight: 500;
-  color: var(--hogwarts-text-light) !important; /* Light text for links */
-  transition: color 0.3s ease;
-}
-
-.nav-link:hover {
-  color: var(--hogwarts-gold) !important; /* Gold on hover */
-}
-
-.nav-link.active {
-  color: var(--hogwarts-gold) !important; /* Gold for active link */
-  font-weight: 700;
-}
-
-.card {
-  border-radius: 0.75rem; /* Already good */
+  width: 100%;
+  height: 100%;
+  padding: 1rem;
+  background-color: var(--hogwarts-parchment); /* Use parchment for background */
+  overflow: auto;
   border: none;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); /* MUI Paper handles this now for MUI components */
-  transition: transform 0.2s ease-in-out;
-  background-color: var(
-    --hogwarts-parchment
-  ); /* Cards on parchment background */
-  color: var(--hogwarts-text-dark); /* Dark text on cards */
+  box-shadow: 0 2px 5px var(--hogwarts-parchment), 0 0px 0 1px #f8f2e249;
 }
 
-/* If you need specific styles for Bootstrap buttons not handled by MUI components */
-.btn {
-  border-radius: 0.5rem;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.btn-primary {
-  background-color: var(
-    --hogwarts-secondary-red
-  ); /* Burgundy for primary BTN */
-  border-color: var(--hogwarts-secondary-red);
-  color: var(--hogwarts-text-light);
-}
-
-.btn-primary:hover {
-  background-color: #5b0f1f; /* Darker Burgundy */
-  border-color: #5b0f1f;
-}
-
-.btn-secondary {
-  background-color: var(--hogwarts-gold); /* Gold for secondary BTN */
-  border-color: var(--hogwarts-gold);
-  color: var(--hogwarts-text-dark); /* Dark text on gold */
-}
-
-.btn-secondary:hover {
-  background-color: #b0956a; /* Darker Gold */
-  border-color: #b0956a;
-}
-
-.btn-success {
-  background-color: var(--hogwarts-dark-green); /* Green for success BTN */
-  border-color: var(--hogwarts-dark-green);
-  color: var(--hogwarts-text-light);
-}
-
-.btn-success:hover {
-  background-color: #113e14; /* Darker Green */
-  border-color: #113e14;
-}
-
-/* Responsive adjustments - Keep these as they are good */
-@media (max-width: 767.98px) {
-  .navbar-brand {
-    font-size: 1.25rem;
-  }
-  .offcanvas-body .nav-link {
-    font-size: 1.2rem;
-    padding: 0.75rem 0;
-    text-align: center;
-  }
-  .offcanvas-header {
-    justify-content: space-between;
-    padding: 1rem;
-    background-color: var(
-      --hogwarts-primary-dark
-    ); /* Dark background for offcanvas header */
-    color: var(--hogwarts-text-light);
-  }
-  .offcanvas-header .btn-close {
-    filter: invert(1); /* Make close button white on dark background */
-  }
-  .offcanvas-body {
-    background-color: var(
-      --hogwarts-primary-dark
-    ); /* Dark background for offcanvas body */
-    color: var(--hogwarts-text-light);
-  }
-}
-
-/* Home page specific styles */
+/* Home page specific styles - keep these if they are not MUI components */
 .home-section {
-  background-color: #ffffff; /* Could be parchment for a more antique feel */
+  background-color: var(--hogwarts-parchment); /* Use parchment for a consistent look */
   border-radius: 1rem;
   padding: 3rem;
-  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.08);
 }
 
-.home-crest {
-  max-width: 150px;
-  height: auto;
-  margin-bottom: 30px;
-}
-
+/* Headings within home-section should ideally be MUI Typography components with theme variants */
 .home-section .display-4 {
-  color: var(--hogwarts-secondary-red); /* Use burgundy for display headings */
+  color: var(--hogwarts-secondary-red);
   font-weight: 700;
 }
 
 .home-section .lead {
-  color: var(--hogwarts-text-dark); /* Dark text for lead paragraphs */
+  color: var(--hogwarts-text-dark);
 }
 
 .quick-menu-buttons .btn {
@@ -201,4 +88,31 @@ body {
   border-radius: 50%;
   object-fit: cover;
   display: block;
+}
+
+/* Responsive adjustments - If you're using Bootstrap's responsive Navbar/Offcanvas,
+   these overrides are still relevant. If migrating to MUI AppBar, these might be redundant. */
+@media (max-width: 767.98px) {
+  /* These styles are likely for Bootstrap's Navbar/Offcanvas */
+  .navbar-brand {
+    font-size: 1.25rem;
+  }
+  .offcanvas-body .nav-link {
+    font-size: 1.2rem;
+    padding: 0.75rem 0;
+    text-align: center;
+  }
+  .offcanvas-header {
+    justify-content: space-between;
+    padding: 1rem;
+    background-color: var(--hogwarts-primary-dark);
+    color: var(--hogwarts-text-light);
+  }
+  .offcanvas-header .btn-close {
+    filter: invert(1);
+  }
+  .offcanvas-body {
+    background-color: var(--hogwarts-primary-dark);
+    color: var(--hogwarts-text-light);
+  }
 }

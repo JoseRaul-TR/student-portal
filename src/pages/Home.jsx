@@ -7,66 +7,64 @@ import homeQuickLinks from "../data/homeQuickLinks";
 import Box from "@mui/material/Box";
 import Typography from "@mui/material/Typography";
 import Button from "@mui/material/Button";
+import { useTheme } from "@mui/material/styles";
 
 export default function Home() {
+  const theme = useTheme(); // Acces the theme object
+
   return (
-    <Box
-      sx={{
-        textAlign: "center",
-        py: { xs: 4, md: 8 }, // Responsive padding
-        display: "flex",
-        flexDirection: "column",
-        alignItems: "center",
-        justifyContent: "center",
-        // Replaced home-section class with MUI sx props
-        backgroundColor: 'background.paper', // Use theme's paper background for the section
-        borderRadius: '1rem',
-        boxShadow: '0 8px 16px rgba(0,0,0,0.08)',
-        p: { xs: 3, md: 6 } // Adjusted padding for the box
-      }}
-    >
+    <>
       <Box
         component="img"
         src={Hogwartscrest}
         alt="Hogwarts Vapensköld"
         sx={{
-          maxWidth: "150px",
+          maxWidth: { xs: "120px", sm: "150px", md: "200px" },
           height: "auto",
-          mb: 3,
+          mb: { xs: 2, sm: 3 },
         }}
-        className="home-crest" // Keep class if specific external styles apply
       />
       <Typography
-        variant="h3" // Use a typography variant from the theme
+        variant="h3"
         component="h1"
         gutterBottom
         sx={{
-          color: 'secondary.main', // Use secondary color (burgundy) for this heading
+          color: "secondary.main", // Use secondary color (burgundy) for this heading
           fontWeight: 700,
+          fontSize: {
+            xs: theme.typography.h4.fontSize,
+            sm: theme.typography.h3.fontSize,
+            md: theme.typography.h2.fontSize,
+          },
+          textAlign: "center",
         }}
       >
         Välkommen till Hogwarts Studentportal!
       </Typography>
       <Typography
-        variant="h6" // Use a typography variant for lead text
+        variant="h6"
         component="p"
         sx={{
-          color: 'text.secondary', // Use secondary text color
-          mb: 4,
-          maxWidth: '600px' // Constrain width for readability
+          color: "text.primary",
+          mb: { xs: 3, sm: 4 },
+          maxWidth: { xs: "90%", sm: "600px" },
+          textAlign: "center",
+          px: { xs: 1, sm: 0 },
         }}
       >
-        Din digitala guide till magi, kunskap och gemenskap på Hogwarts skola för häxkonster och trolldom.
+        Din digitala guide till magi, kunskap och gemenskap på Hogwarts skola
+        för häxkonster och trolldom.
       </Typography>
 
       <Box
         className="quick-menu-buttons"
         sx={{
-          display: 'flex',
-          flexWrap: 'wrap', // Allow buttons to wrap on smaller screens
-          gap: 2, // Spacing between buttons
-          justifyContent: 'center', // Center buttons
-          width: '100%'
+          display: "flex",
+          flexWrap: "wrap",
+          gap: { xs: 1.5, sm: 2 },
+          justifyContent: "center",
+          width: "100%",
+          px: { xs: 2, sm: 0 },
         }}
       >
         {homeQuickLinks.map((link) => (
@@ -76,12 +74,16 @@ export default function Home() {
             to={link.path}
             variant={link.muiProps.variant}
             color={link.muiProps.color}
-            sx={{ minWidth: { xs: '100%', sm: '200px' } }} // Responsive minWidth
+            sx={{ 
+              minWidth: { xs: "100%", sm: "200px" },
+              flexGrow: 1,
+              maxWidth: { xs: "100%", sm: "calc(50% - 8px)", md: "200px" },
+            }}
           >
             {link.text}
           </Button>
         ))}
       </Box>
-    </Box>
+    </>
   );
 }

@@ -15,9 +15,9 @@ import NotFound from "./components/NotFoundPage"; // 404 Not Found Page
 
 function App() {
   return (
-    <>
+    <div className="gradient-background d-flex flex-grow-1 h-100 w-100 flex-column justify-content-center align-items-center">
       <Navbar />
-      <div className="container mt-4 mb-4 flex-grow-1">
+      <div className="container my-4 my-md-4 mx-4 mx-md-4 d-flex flex-column justify-content-center align-items-center flex-grow-1 rounded">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />
@@ -27,7 +27,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
-    </>
+    </div>
   );
 }
 

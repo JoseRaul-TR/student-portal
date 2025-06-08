@@ -17,6 +17,7 @@ ReactDOM.createRoot(document.getElementById("root")).render(
     <BrowserRouter>
       <RegistrationProvider>
         <ThemeProvider theme={hogwartsTheme}>
+          <CssBaseline />
           <App />
         </ThemeProvider>
       </RegistrationProvider>

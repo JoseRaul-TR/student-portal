@@ -133,6 +133,7 @@ export default function RegistrationForm() {
         margin: "auto",
         p: 3,
         backgroundColor: "background.paper",
+        borderRadius: "12px",
       }}
       noValidate
       autoComplete="off"
