@@ -24,7 +24,7 @@ export default function BrandLogo({
         style={{ height: imgHeight }}
         className={`d-inline-block ${imageMargin}`}
       />
-      {showText && <span className={textClasses}>Studentportalen</span>}
+      {showText && <span className={`${textClasses} fw-bold`}>Studentportalen</span>}
     </Link>
   );
 }

@@ -6,7 +6,7 @@ export default function Footer() {
     const currentYear = new Date().getFullYear();
 
     return (
-        <div className="bg-hogwarts-red shadow-bottom text-center p-3 w-100 mt-auto d-flex flex-column align-items-center justify-content-center">
+        <div className="text-center p-3 w-100 mt-auto d-flex flex-column align-items-center justify-content-center">
             <Link to="/" element={<Home />} className="footer-link text-decoration-none mb-2">
             Hogwarts – Studentportalen
             </Link>
