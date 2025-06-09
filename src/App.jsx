@@ -12,6 +12,7 @@ import CourseDetails from "./pages/CourseDetails";
 // Components
 import Navbar from "./components/Navbar";
 import NotFound from "./components/NotFoundPage"; // 404 Not Found Page
+import Footer from "./components/Footer";
 
 function App() {
   return (
@@ -27,6 +28,7 @@ function App() {
           <Route path="*" element={<NotFound />} />
         </Routes>
       </div>
+      <Footer />
     </div>
   );
 }

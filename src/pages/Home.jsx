@@ -39,7 +39,7 @@ export default function Home() {
           textAlign: "center",
         }}
       >
-        Välkommen till Hogwarts Studentportal!
+        Välkommen till Hogwarts Studentportal
       </Typography>
       <Typography
         variant="h6"
