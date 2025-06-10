@@ -20,7 +20,7 @@ export function formatTimeAgo(dateInput) {
 
   const days = Math.floor(hours / 24);
   if (days < 7) {
-    return days <= 1 ? " för en dag sedag" : ` för ${days} dagar sedan`;
+    return days <= 1 ? " för en dag sedan" : ` för ${days} dagar sedan`;
   }
 
   const weeks = Math.floor(days / 7);

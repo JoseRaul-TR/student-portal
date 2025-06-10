@@ -61,22 +61,14 @@ export default function CourseDetails() {
               variant="h3"
               component="h1"
               gutterBottom
-              sx={{ color: 'primary.main', mb: 3 }}
+              sx={{ color: "primary.main", mb: 3 }}
             >
               {course.name}
             </Typography>
-            <Typography
-              variant="h6"
-              color="text.secondary"
-              gutterBottom
-            >
+            <Typography variant="h6" color="text.secondary" gutterBottom>
               {course.description}
             </Typography>
-            <Typography
-              variant="body1"
-              paragraph
-              sx={{ mt: 3 }}
-            >
+            <Typography variant="body1" paragraph sx={{ mt: 3 }}>
               {course.longDescription}
             </Typography>
             <Typography variant="body1" component="div" sx={{ mt: 2 }}>
@@ -95,7 +87,9 @@ export default function CourseDetails() {
                 src={teacherImgSrc}
                 alt={course.teacher || "Placeholder image"}
                 className="mb-3 teacher-img-detail"
-                sx={{ boxShadow: 3, border: '2px solid', borderColor: 'hogwarts.gold' }}
+                sx={(theme) => ({
+                  boxShadow: `0 0 10px 3px ${theme.palette.hogwarts.gold}`,
+                })}
               />
             )}
             <Typography variant="subtitle1" component="h6" align="center">
@@ -112,7 +106,7 @@ export default function CourseDetails() {
         color="primary"
         sx={{ mt: 3 }}
       >
-        Tillbaka till kurser
+        Tillbaka till kurskatalog
       </Button>
     </div>
   );

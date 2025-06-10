@@ -18,7 +18,7 @@ function App() {
   return (
     <div className="gradient-background d-flex flex-grow-1 h-100 w-100 flex-column justify-content-center align-items-center">
       <Navbar />
-      <div className="container my-4 my-md-4 mx-4 mx-md-4 d-flex flex-column justify-content-center align-items-center flex-grow-1 rounded">
+      <div className="container p-4 m-4 m-md-4 d-flex flex-column justify-content-center align-items-center flex-grow-1 rounded">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/courses" element={<Courses />} />

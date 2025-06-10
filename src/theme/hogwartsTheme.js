@@ -177,6 +177,7 @@ const hogwartsTheme = createTheme({
         },
       },
     },
+    
   },
 });
 

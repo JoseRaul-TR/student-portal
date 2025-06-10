@@ -33,11 +33,16 @@ function descendingComparator(a, b, orderBy) {
     return 0;
   }
 
-  // Default comparison for other types
-  if (b[orderBy] < a[orderBy]) {
+  // String comparison
+  const valA =
+    typeof a[orderBy] === "string" ? a[orderBy].toLowerCase() : a[orderBy];
+  const valB =
+    typeof b[orderBy] === "string" ? b[orderBy].toLowerCase() : b[orderBy];
+
+  if (valB < valA) {
     return -1;
   }
-  if (b[orderBy] > a[orderBy]) {
+  if (valB > valA) {
     return 1;
   }
   return 0;

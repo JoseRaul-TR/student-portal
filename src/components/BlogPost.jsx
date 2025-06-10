@@ -4,11 +4,9 @@ import { Typography, Box, Tooltip, Avatar } from "@mui/material";
 
 import { formatTimeAgo, formatExactDateTime } from "../utils/dateUtils";
 
-
 export default function BlogPost({ post }) {
-
   return (
-   <div className="card shadow-sm mb-3">
+    <div className="card shadow-sm mb-3">
       <div className="card-body">
         <Box
           className="card-header d-flex align-items-center mb-3"
@@ -17,8 +15,8 @@ export default function BlogPost({ post }) {
             borderBottom: "1px solid var(--hogwarts-gold)",
             borderRadius: "0.5rem",
             padding: "1rem",
-            display: 'flex',
-            alignItems: 'center',
+            display: "flex",
+            alignItems: "center",
           }}
         >
           {post.authorImg && (
@@ -26,12 +24,11 @@ export default function BlogPost({ post }) {
               <Avatar
                 src={post.authorImg}
                 alt={post.author}
-                sx={{
-                  width: 60,
-                  height: 60,
-                  border: "2px solid var(--hogwarts-darkGreen)",
-                  boxShadow: "0 2px 4px rgba(0,0,0,0.1)",
-                }}
+                sx={(theme) => ({
+                  width: 80,
+                  height: 80,
+                  boxShadow: `0 0 4px 2px ${theme.palette.hogwarts.gold}`,
+                })}
               />
             </div>
           )}
@@ -45,21 +42,27 @@ export default function BlogPost({ post }) {
               {post.title}
             </Typography>
             {/* Implement Tooltip for the date */}
-            <Tooltip title={formatExactDateTime(post.date)} placement="top-start" arrow>
+            <Tooltip
+              title={formatExactDateTime(post.date)}
+              placement="top-start"
+              arrow
+              enterTouchDelay={0} // Add TouchDelay for Touchscreens interaction
+              leaveTouchDelay={500}
+            >
               <Typography
                 variant="body2"
                 component="h6"
                 color="text.secondary"
                 className="card-subtitle text-muted"
                 sx={{
-                  display: 'inline-block',
-                  cursor: 'help',
-                  '&:hover': {
-                    textDecoration: 'underline',
-                  }
+                  display: "inline-block",
+                  cursor: "help",
+                  "&:hover": {
+                    textDecoration: "underline",
+                  },
                 }}
               >
-                {post.author}, {formatTimeAgo(post.date)} 
+                {post.author}, {formatTimeAgo(post.date)}
               </Typography>
             </Tooltip>
           </Box>
@@ -71,4 +74,3 @@ export default function BlogPost({ post }) {
     </div>
   );
 }
-

@@ -19,11 +19,10 @@ import DialogTitle from "@mui/material/DialogTitle";
 import DialogContent from "@mui/material/DialogContent";
 import DialogActions from "@mui/material/DialogActions";
 import Tooltip from "@mui/material/Tooltip";
-import Slide from "@mui/material/Slide"; // Import Slide for the transition
+import Slide from "@mui/material/Slide";
 
 import BackpackIcon from "@mui/icons-material/Backpack";
 import IconButton from "@mui/material/IconButton";
-import CloseIcon from "@mui/icons-material/Close";
 
 import courses from "../data/courses";
 
@@ -52,10 +51,11 @@ export default function RegistrationForm() {
   const [openRegisteredCoursesDialog, setOpenRegisteredCoursesDialog] =
     useState(false);
 
+  // Consume context for registration logic and data
   const { registeredCourses, registerStudent } =
     useContext(RegistrationContext);
 
-  // Clear message after a few seconds
+  // Clear message after 5 seconds
   useEffect(() => {
     if (message) {
       const timer = setTimeout(() => setMessage(""), 5000);
@@ -71,7 +71,7 @@ export default function RegistrationForm() {
 
     // Validate form using the hook useFormValidation.js
     if (!validate()) {
-      setMessage("Vänligen fyll i alla fält");
+      setMessage("Vänligen fyll i alla fält"); // Specific error message
       setMessageType("error");
       return; // Validation failed, do not open dialog
     }
@@ -110,7 +110,6 @@ export default function RegistrationForm() {
 
   const handleCloseRegistrationDialog = () => {
     setOpenRegistrationDialog(false);
-    setMessage(""); // Clear message if dialog is closed without confirming
   };
 
   const handleOpenRegisteredCoursesDialog = () => {
@@ -135,9 +134,9 @@ export default function RegistrationForm() {
         backgroundColor: "background.paper",
         borderRadius: "12px",
       }}
-      noValidate
+      noValidate // Disable native HTML validation
       autoComplete="off"
-      onSubmit={handleOpenRegistrationDialog}
+      onSubmit={handleOpenRegistrationDialog} // Intercept form submission
     >
       <Typography
         variant="h5"
@@ -170,6 +169,11 @@ export default function RegistrationForm() {
         required
         error={!!errors.name}
         helperText={errors.name || ""}
+        sx={(theme) => ({
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.palette.hogwarts.gold,
+          },
+        })}
       />
       <TextField
         label="Email"
@@ -181,6 +185,11 @@ export default function RegistrationForm() {
         required
         error={!!errors.email}
         helperText={errors.email || ""}
+        sx={(theme) => ({
+          "& .MuiOutlinedInput-root.Mui-focused .MuiOutlinedInput-notchedOutline": {
+            borderColor: theme.palette.hogwarts.gold,
+          },
+        })}
       />
       <FormControl fullWidth sx={{ m: 1, minWidth: 120 }}>
         <InputLabel id="course-select-label">Välj kurs</InputLabel>
@@ -192,7 +201,22 @@ export default function RegistrationForm() {
           onChange={selectedCourseId.onChange}
           required
           error={!!errors.selectedCourseId}
-          sx={{ borderRadius: "8px" }}
+          sx={(theme) => ({borderRadius: "8px",
+      '& .MuiOutlinedInput-notchedOutline': { // Default border color
+        borderColor: theme.palette.primary.main, // You might set a default border color if needed
+      },
+      '&.Mui-focused .MuiOutlinedInput-notchedOutline': {
+        borderColor: theme.palette.hogwarts.gold, // Change border color when focused
+      },
+        })} 
+          MenuProps={{
+            PaperProps: {
+              sx: {
+                backgroundColor: "background.paper",
+                borderRadius: "8px",
+              },
+            },
+          }}
         >
           <MenuItem value="">
             <em>Ingen</em>

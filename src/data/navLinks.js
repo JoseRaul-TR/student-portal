@@ -1,6 +1,6 @@
 const navLinks = [
   {
-    name: "Kurser",
+    name: "Kurskatalog",
     path: "/courses",
   },
   {

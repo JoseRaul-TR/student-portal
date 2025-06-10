@@ -27,7 +27,7 @@ export default function Courses() {
   });
 
   return (
-    <Box sx={{ p: { xs: 2, md: 4 } }}>
+    <>
       <Typography
         variant="h3"
         component="h1"
@@ -72,6 +72,6 @@ export default function Courses() {
           )}
         </div>
       </SearchFilter>
-    </Box>
+    </>
   );
 }

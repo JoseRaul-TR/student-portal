@@ -5,11 +5,12 @@ const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
 
 export const useFormValidation = (formInputs) => {
   const [errors, setErrors] = useState({});
-  const [isValid, setIsValid] = useState(false); // isValid state can be derived or used directly
+  // isValid state directly managed by validate function
+  const [isValid, setIsValid] = useState(false); 
 
   const validate = () => {
     let newErrors = {};
-    let formIsValid = true;
+    let formIsValid = true; // Assume valid until a check fails
 
     // Validate Name
     if (!formInputs.name.value.trim()) {
@@ -33,8 +34,8 @@ export const useFormValidation = (formInputs) => {
     }
 
     setErrors(newErrors);
-    setIsValid(formIsValid); // Update isValid state
-    return formIsValid;
+    setIsValid(formIsValid); // Update isValid state based on validation outcome
+    return formIsValid; // Return validation result directly
   };
 
   const resetErrors = () => {
