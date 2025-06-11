@@ -11,7 +11,7 @@ import georgeWeasleyImg from "../assets/students_img/george_weasley.webp";
 import tomMarvoloRiddleImg from "../assets/students_img/tom_marvolo-riddle.jpg";
 import placeholderImg from "../assets/placeholder.webp";
 
-// Define an array of students with ID, name and reference to their imported profile image
+// Students array with id, name and img_route
 const students = [
   {
     id: 1,
@@ -91,7 +91,7 @@ const fetchPosts = async () => {
       });
     });
 
-    // Map through the fetched posts to format them and add aouthor details.
+    // Map through the fetched posts to format them and add author details.
     const formattedPosts = postsData.map((post) => {
       // Get the current date
       const now = new Date();
