@@ -38,7 +38,7 @@ export default function RegistrationForm() {
   const selectedCourseId = useFormInput("");
 
   // Use custom hook for form validation
-  const { errors, isValid, validate, resetErrors } = useFormValidation({
+  const { errors, validate, resetErrors } = useFormValidation({
     name,
     email,
     selectedCourseId,
